@@ -189,6 +189,57 @@
             border-bottom: none;
         }
 
+        /* Selected sources display */
+        .selected-sources {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+            display: none;
+        }
+
+        .selected-sources.show {
+            display: block;
+        }
+
+        .selected-sources h4 {
+            margin: 0 0 0.5rem 0;
+            color: #495057;
+            font-size: 1rem;
+        }
+
+        .selected-sources-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .selected-source-tag {
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .remove-source {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0;
+            opacity: 0.8;
+        }
+
+        .remove-source:hover {
+            opacity: 1;
+        }
+
         .submit-btn {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -376,140 +427,91 @@
                     
                     <!-- Search container for "Other" option -->
                     <div id="searchContainer" class="search-container">
-                        <input type="text" id="searchInput" class="search-input" placeholder="Search for specific topics...">
+                        <input type="text" id="searchInput" class="search-input" placeholder="Choose another topic...">
                         <div id="searchResults" class="search-results" style="display: none;"></div>
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="countries">Countries of interest (select all that apply):</label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="countries" value="usa">
-                            United States
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="countries" value="uk">
-                            United Kingdom
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="countries" value="spain">
-                            Spain
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="countries" value="france">
-                            France
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="countries" value="germany">
-                            Germany
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="countries" value="italy">
-                            Italy
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="countries" value="brazil">
-                            Brazil
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="countries" value="mexico">
-                            Mexico
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="countries" value="canada">
-                            Canada
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="countries" value="australia">
-                            Australia
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="countries" value="japan">
-                            Japan
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="countries" value="china">
-                            China
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="countries" value="india">
-                            India
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="countries" value="russia">
-                            Russia
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="countries" value="global">
-                            Global/International
-                        </label>
-                    </div>
+                    <label for="country_interest">Country of interest: *</label>
+                    <select id="country_interest" name="country_interest" required>
+                        <option value="">Select your country</option>
+                        <option value="ar">🇦🇷 Argentina</option>
+                        <option value="au">🇦🇺 Australia</option>
+                        <option value="at">🇦🇹 Austria</option>
+                        <option value="be">🇧🇪 Belgium</option>
+                        <option value="br">🇧🇷 Brazil</option>
+                        <option value="bg">🇧🇬 Bulgaria</option>
+                        <option value="ca">🇨🇦 Canada</option>
+                        <option value="cn">🇨🇳 China</option>
+                        <option value="co">🇨🇴 Colombia</option>
+                        <option value="cu">🇨🇺 Cuba</option>
+                        <option value="cz">🇨🇿 Czech Republic</option>
+                        <option value="eg">🇪🇬 Egypt</option>
+                        <option value="fr">🇫🇷 France</option>
+                        <option value="de">🇩🇪 Germany</option>
+                        <option value="gr">🇬🇷 Greece</option>
+                        <option value="hk">🇭🇰 Hong Kong</option>
+                        <option value="hu">🇭🇺 Hungary</option>
+                        <option value="in">🇮🇳 India</option>
+                        <option value="id">🇮🇩 Indonesia</option>
+                        <option value="ie">🇮🇪 Ireland</option>
+                        <option value="il">🇮🇱 Israel</option>
+                        <option value="it">🇮🇹 Italy</option>
+                        <option value="jp">🇯🇵 Japan</option>
+                        <option value="lv">🇱🇻 Latvia</option>
+                        <option value="lt">🇱🇹 Lithuania</option>
+                        <option value="my">🇲🇾 Malaysia</option>
+                        <option value="mx">🇲🇽 Mexico</option>
+                        <option value="ma">🇲🇦 Morocco</option>
+                        <option value="nl">🇳🇱 Netherlands</option>
+                        <option value="nz">🇳🇿 New Zealand</option>
+                        <option value="ng">🇳🇬 Nigeria</option>
+                        <option value="no">🇳🇴 Norway</option>
+                        <option value="ph">🇵🇭 Philippines</option>
+                        <option value="pl">🇵🇱 Poland</option>
+                        <option value="pt">🇵🇹 Portugal</option>
+                        <option value="ro">🇷🇴 Romania</option>
+                        <option value="ru">🇷🇺 Russia</option>
+                        <option value="sa">🇸🇦 Saudi Arabia</option>
+                        <option value="rs">🇷🇸 Serbia</option>
+                        <option value="sg">🇸🇬 Singapore</option>
+                        <option value="sk">🇸🇰 Slovakia</option>
+                        <option value="si">🇸🇮 Slovenia</option>
+                        <option value="za">🇿🇦 South Africa</option>
+                        <option value="kr">🇰🇷 South Korea</option>
+                        <option value="se">🇸🇪 Sweden</option>
+                        <option value="ch">🇨🇭 Switzerland</option>
+                        <option value="tw">🇹🇼 Taiwan</option>
+                        <option value="th">🇹🇭 Thailand</option>
+                        <option value="tr">🇹🇷 Turkey</option>
+                        <option value="ua">🇺🇦 Ukraine</option>
+                        <option value="ae">🇦🇪 United Arab Emirates</option>
+                        <option value="gb">🇬🇧 United Kingdom</option>
+                        <option value="us">🇺🇸 United States</option>
+                        <option value="ve">🇻🇪 Venezuela</option>
+                    </select>
                 </div>
-                
-                <div class="form-group">
+                <!-- Idioma dropdown (solo si el país tiene más de un idioma en NewsAPI) -->
+                <div class="form-group" id="language-group" style="display:none;">
+                    <label for="language_interest">Language: *</label>
+                    <select id="language_interest" name="language_interest" required>
+                        <!-- Opciones dinámicas -->
+                    </select>
+                </div>
+                <!-- Sources dropdown/list -->
+                <div class="form-group" id="sources-group" style="display:none;">
                     <label for="sources">Preferred news sources (select all that apply):</label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="sources" value="reuters">
-                            Reuters
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="sources" value="ap">
-                            Associated Press
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="sources" value="bbc">
-                            BBC
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="sources" value="cnn">
-                            CNN
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="sources" value="nytimes">
-                            The New York Times
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="sources" value="wsj">
-                            The Wall Street Journal
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="sources" value="guardian">
-                            The Guardian
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="sources" value="techcrunch">
-                            TechCrunch
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="sources" value="wired">
-                            Wired
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="sources" value="ars">
-                            Ars Technica
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="sources" value="espn">
-                            ESPN
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="sources" value="nature">
-                            Nature
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="sources" value="science">
-                            Science Magazine
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="sources" value="local">
-                            Local News Sources
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="sources" value="any">
-                            Any Reliable Source
-                        </label>
+                    <div class="checkbox-group" id="sources-checkboxes">
+                        <!-- Las fuentes se llenarán dinámicamente según el país/idioma -->
+                    </div>
+                    
+                    <!-- Selected sources display -->
+                    <div class="selected-sources" id="selected-sources">
+                        <h4>Your Selected Sources:</h4>
+                        <div class="selected-sources-list" id="selected-sources-list">
+                            <!-- Las fuentes seleccionadas aparecerán aquí -->
+                        </div>
                     </div>
                 </div>
                 
@@ -525,21 +527,254 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="timezone">Time zone: *</label>
-                    <select id="timezone" name="timezone" required>
-                        <option value="">Select your time zone</option>
-                        <option value="UTC-8">Pacific (UTC-8)</option>
-                        <option value="UTC-7">Mountain (UTC-7)</option>
-                        <option value="UTC-6">Central (UTC-6)</option>
-                        <option value="UTC-5">Eastern (UTC-5)</option>
-                        <option value="UTC-3">Brazil (UTC-3)</option>
-                        <option value="UTC+0">London (UTC+0)</option>
-                        <option value="UTC+1">Madrid (UTC+1)</option>
-                        <option value="UTC+2">Central Europe (UTC+2)</option>
-                        <option value="UTC+3">Moscow (UTC+3)</option>
-                        <option value="UTC+5:30">India (UTC+5:30)</option>
-                        <option value="UTC+8">China (UTC+8)</option>
-                        <option value="UTC+9">Japan (UTC+9)</option>
+                    <label for="country_timezone">Country and time zone: *</label>
+                    <select id="country_timezone" name="country_timezone" required>
+                        <option value="">Select your country and time zone</option>
+                        <option value="🇦🇫 Afghanistan|Asia/Kabul">🇦🇫 Afghanistan (UTC+4:30)</option>
+                        <option value="🇦🇱 Albania|Europe/Tirane">🇦🇱 Albania (UTC+1)</option>
+                        <option value="🇩🇿 Algeria|Africa/Algiers">🇩🇿 Algeria (UTC+1)</option>
+                        <option value="🇦🇸 American Samoa|Pacific/Pago_Pago">🇦🇸 American Samoa (UTC-11)</option>
+                        <option value="🇦🇩 Andorra|Europe/Andorra">🇦🇩 Andorra (UTC+1)</option>
+                        <option value="🇦🇴 Angola|Africa/Luanda">🇦🇴 Angola (UTC+1)</option>
+                        <option value="🇦🇮 Anguilla|America/Anguilla">🇦🇮 Anguilla (UTC-4)</option>
+                        <option value="🇦🇶 Antarctica|Antarctica/Casey">🇦🇶 Antarctica (UTC+8)</option>
+                        <option value="🇦🇬 Antigua & Barbuda|America/Antigua">🇦🇬 Antigua & Barbuda (UTC-4)</option>
+                        <option value="🇦🇷 Argentina|America/Argentina/Buenos_Aires">🇦🇷 Argentina (UTC-3)</option>
+                        <option value="🇦🇲 Armenia|Asia/Yerevan">🇦🇲 Armenia (UTC+4)</option>
+                        <option value="🇦🇼 Aruba|America/Aruba">🇦🇼 Aruba (UTC-4)</option>
+                        <option value="🇦🇺 Australia|Australia/Sydney">🇦🇺 Australia (UTC+10)</option>
+                        <option value="🇦🇹 Austria|Europe/Vienna">🇦🇹 Austria (UTC+1)</option>
+                        <option value="🇦🇿 Azerbaijan|Asia/Baku">🇦🇿 Azerbaijan (UTC+4)</option>
+                        <option value="🇧🇸 Bahamas|America/Nassau">🇧🇸 Bahamas (UTC-5)</option>
+                        <option value="🇧🇭 Bahrain|Asia/Bahrain">🇧🇭 Bahrain (UTC+3)</option>
+                        <option value="🇧🇩 Bangladesh|Asia/Dhaka">🇧🇩 Bangladesh (UTC+6)</option>
+                        <option value="🇧🇧 Barbados|America/Barbados">🇧🇧 Barbados (UTC-4)</option>
+                        <option value="🇧🇾 Belarus|Europe/Minsk">🇧🇾 Belarus (UTC+3)</option>
+                        <option value="🇧🇪 Belgium|Europe/Brussels">🇧🇪 Belgium (UTC+1)</option>
+                        <option value="🇧🇿 Belize|America/Belize">🇧🇿 Belize (UTC-6)</option>
+                        <option value="🇧🇯 Benin|Africa/Porto-Novo">🇧🇯 Benin (UTC+1)</option>
+                        <option value="🇧🇲 Bermuda|Atlantic/Bermuda">🇧🇲 Bermuda (UTC-4)</option>
+                        <option value="🇧🇹 Bhutan|Asia/Thimphu">🇧🇹 Bhutan (UTC+6)</option>
+                        <option value="🇧🇴 Bolivia|America/La_Paz">🇧🇴 Bolivia (UTC-4)</option>
+                        <option value="🇧🇦 Bosnia & Herzegovina|Europe/Sarajevo">🇧🇦 Bosnia & Herzegovina (UTC+1)</option>
+                        <option value="🇧🇼 Botswana|Africa/Gaborone">🇧🇼 Botswana (UTC+2)</option>
+                        <option value="🇧🇷 Brazil|America/Sao_Paulo">🇧🇷 Brazil (UTC-3)</option>
+                        <option value="🇮🇴 British Indian Ocean Territory|Indian/Chagos">🇮🇴 British Indian Ocean Territory (UTC+6)</option>
+                        <option value="🇻🇬 British Virgin Islands|America/Tortola">🇻🇬 British Virgin Islands (UTC-4)</option>
+                        <option value="🇧🇳 Brunei|Asia/Brunei">🇧🇳 Brunei (UTC+8)</option>
+                        <option value="🇧🇬 Bulgaria|Europe/Sofia">🇧🇬 Bulgaria (UTC+2)</option>
+                        <option value="🇧🇫 Burkina Faso|Africa/Ouagadougou">🇧🇫 Burkina Faso (UTC+0)</option>
+                        <option value="🇧🇮 Burundi|Africa/Bujumbura">🇧🇮 Burundi (UTC+2)</option>
+                        <option value="🇰🇭 Cambodia|Asia/Phnom_Penh">🇰🇭 Cambodia (UTC+7)</option>
+                        <option value="🇨🇲 Cameroon|Africa/Douala">🇨🇲 Cameroon (UTC+1)</option>
+                        <option value="🇨🇦 Canada|America/Toronto">🇨🇦 Canada (UTC-5)</option>
+                        <option value="🇨🇻 Cape Verde|Atlantic/Cape_Verde">🇨🇻 Cape Verde (UTC-1)</option>
+                        <option value="🇧🇶 Caribbean Netherlands|America/Kralendijk">🇧🇶 Caribbean Netherlands (UTC-4)</option>
+                        <option value="🇰🇾 Cayman Islands|America/Cayman">🇰🇾 Cayman Islands (UTC-5)</option>
+                        <option value="🇨🇫 Central African Republic|Africa/Bangui">🇨🇫 Central African Republic (UTC+1)</option>
+                        <option value="🇹🇩 Chad|Africa/Ndjamena">🇹🇩 Chad (UTC+1)</option>
+                        <option value="🇨🇱 Chile|America/Santiago">🇨🇱 Chile (UTC-4)</option>
+                        <option value="🇨🇳 China|Asia/Shanghai">🇨🇳 China (UTC+8)</option>
+                        <option value="🇨🇽 Christmas Island|Indian/Christmas">🇨🇽 Christmas Island (UTC+7)</option>
+                        <option value="🇨🇨 Cocos (Keeling) Islands|Indian/Cocos">🇨🇨 Cocos (Keeling) Islands (UTC+6:30)</option>
+                        <option value="🇨🇴 Colombia|America/Bogota">🇨🇴 Colombia (UTC-5)</option>
+                        <option value="🇰🇲 Comoros|Indian/Comoro">🇰🇲 Comoros (UTC+3)</option>
+                        <option value="🇨🇬 Congo - Brazzaville|Africa/Brazzaville">🇨🇬 Congo - Brazzaville (UTC+1)</option>
+                        <option value="🇨🇩 Congo - Kinshasa|Africa/Kinshasa">🇨🇩 Congo - Kinshasa (UTC+1)</option>
+                        <option value="🇨🇰 Cook Islands|Pacific/Rarotonga">🇨🇰 Cook Islands (UTC-10)</option>
+                        <option value="🇨🇷 Costa Rica|America/Costa_Rica">🇨🇷 Costa Rica (UTC-6)</option>
+                        <option value="🇭🇷 Croatia|Europe/Zagreb">🇭🇷 Croatia (UTC+1)</option>
+                        <option value="🇨🇺 Cuba|America/Havana">🇨🇺 Cuba (UTC-5)</option>
+                        <option value="🇨🇼 Curaçao|America/Curacao">🇨🇼 Curaçao (UTC-4)</option>
+                        <option value="🇨🇾 Cyprus|Asia/Nicosia">🇨🇾 Cyprus (UTC+2)</option>
+                        <option value="🇨🇿 Czechia|Europe/Prague">🇨🇿 Czechia (UTC+1)</option>
+                        <option value="🇩🇰 Denmark|Europe/Copenhagen">🇩🇰 Denmark (UTC+1)</option>
+                        <option value="🇩🇯 Djibouti|Africa/Djibouti">🇩🇯 Djibouti (UTC+3)</option>
+                        <option value="🇩🇲 Dominica|America/Dominica">🇩🇲 Dominica (UTC-4)</option>
+                        <option value="🇩🇴 Dominican Republic|America/Santo_Domingo">🇩🇴 Dominican Republic (UTC-4)</option>
+                        <option value="🇪🇨 Ecuador|America/Guayaquil">🇪🇨 Ecuador (UTC-5)</option>
+                        <option value="🇪🇬 Egypt|Africa/Cairo">🇪🇬 Egypt (UTC+2)</option>
+                        <option value="🇸🇻 El Salvador|America/El_Salvador">🇸🇻 El Salvador (UTC-6)</option>
+                        <option value="🇬🇶 Equatorial Guinea|Africa/Malabo">🇬🇶 Equatorial Guinea (UTC+1)</option>
+                        <option value="🇪🇷 Eritrea|Africa/Asmara">🇪🇷 Eritrea (UTC+3)</option>
+                        <option value="🇪🇪 Estonia|Europe/Tallinn">🇪🇪 Estonia (UTC+2)</option>
+                        <option value="🇸🇿 Eswatini|Africa/Mbabane">🇸🇿 Eswatini (UTC+2)</option>
+                        <option value="🇪🇹 Ethiopia|Africa/Addis_Ababa">🇪🇹 Ethiopia (UTC+3)</option>
+                        <option value="🇫🇰 Falkland Islands|Atlantic/Stanley">🇫🇰 Falkland Islands (UTC-3)</option>
+                        <option value="🇫🇴 Faroe Islands|Atlantic/Faroe">🇫🇴 Faroe Islands (UTC+0)</option>
+                        <option value="🇫🇯 Fiji|Pacific/Fiji">🇫🇯 Fiji (UTC+12)</option>
+                        <option value="🇫🇮 Finland|Europe/Helsinki">🇫🇮 Finland (UTC+2)</option>
+                        <option value="🇫🇷 France|Europe/Paris">🇫🇷 France (UTC+1)</option>
+                        <option value="🇬🇫 French Guiana|America/Cayenne">🇬🇫 French Guiana (UTC-3)</option>
+                        <option value="🇵🇫 French Polynesia|Pacific/Tahiti">🇵🇫 French Polynesia (UTC-10)</option>
+                        <option value="🇹🇫 French Southern Territories|Indian/Kerguelen">🇹🇫 French Southern Territories (UTC+5)</option>
+                        <option value="🇬🇦 Gabon|Africa/Libreville">🇬🇦 Gabon (UTC+1)</option>
+                        <option value="🇬🇲 Gambia|Africa/Banjul">🇬🇲 Gambia (UTC+0)</option>
+                        <option value="🇬🇪 Georgia|Asia/Tbilisi">🇬🇪 Georgia (UTC+4)</option>
+                        <option value="🇩🇪 Germany|Europe/Berlin">🇩🇪 Germany (UTC+1)</option>
+                        <option value="🇬🇭 Ghana|Africa/Accra">🇬🇭 Ghana (UTC+0)</option>
+                        <option value="🇬🇮 Gibraltar|Europe/Gibraltar">🇬🇮 Gibraltar (UTC+1)</option>
+                        <option value="🇬🇷 Greece|Europe/Athens">🇬🇷 Greece (UTC+2)</option>
+                        <option value="🇬🇱 Greenland|America/Godthab">🇬🇱 Greenland (UTC-3)</option>
+                        <option value="🇬🇩 Grenada|America/Grenada">🇬🇩 Grenada (UTC-4)</option>
+                        <option value="🇬🇵 Guadeloupe|America/Guadeloupe">🇬🇵 Guadeloupe (UTC-4)</option>
+                        <option value="🇬🇺 Guam|Pacific/Guam">🇬🇺 Guam (UTC+10)</option>
+                        <option value="🇬🇹 Guatemala|America/Guatemala">🇬🇹 Guatemala (UTC-6)</option>
+                        <option value="🇬🇬 Guernsey|Europe/Guernsey">🇬🇬 Guernsey (UTC+0)</option>
+                        <option value="🇬🇳 Guinea|Africa/Conakry">🇬🇳 Guinea (UTC+0)</option>
+                        <option value="🇬🇼 Guinea-Bissau|Africa/Bissau">🇬🇼 Guinea-Bissau (UTC+0)</option>
+                        <option value="🇬🇾 Guyana|America/Guyana">🇬🇾 Guyana (UTC-4)</option>
+                        <option value="🇭🇹 Haiti|America/Port-au-Prince">🇭🇹 Haiti (UTC-5)</option>
+                        <option value="🇭🇳 Honduras|America/Tegucigalpa">🇭🇳 Honduras (UTC-6)</option>
+                        <option value="🇭🇰 Hong Kong|Asia/Hong_Kong">🇭🇰 Hong Kong (UTC+8)</option>
+                        <option value="🇭🇺 Hungary|Europe/Budapest">🇭🇺 Hungary (UTC+1)</option>
+                        <option value="🇮🇸 Iceland|Atlantic/Reykjavik">🇮🇸 Iceland (UTC+0)</option>
+                        <option value="🇮🇳 India|Asia/Kolkata">🇮🇳 India (UTC+5:30)</option>
+                        <option value="🇮🇩 Indonesia|Asia/Jakarta">🇮🇩 Indonesia (UTC+7)</option>
+                        <option value="🇮🇷 Iran|Asia/Tehran">🇮🇷 Iran (UTC+3:30)</option>
+                        <option value="🇮🇶 Iraq|Asia/Baghdad">🇮🇶 Iraq (UTC+3)</option>
+                        <option value="🇮🇪 Ireland|Europe/Dublin">🇮🇪 Ireland (UTC+0)</option>
+                        <option value="🇮🇲 Isle of Man|Europe/Isle_of_Man">🇮🇲 Isle of Man (UTC+0)</option>
+                        <option value="🇮🇱 Israel|Asia/Jerusalem">🇮🇱 Israel (UTC+2)</option>
+                        <option value="🇮🇹 Italy|Europe/Rome">🇮🇹 Italy (UTC+1)</option>
+                        <option value="🇨🇮 Ivory Coast|Africa/Abidjan">🇨�� Ivory Coast (UTC+0)</option>
+                        <option value="🇯🇲 Jamaica|America/Jamaica">🇯🇲 Jamaica (UTC-5)</option>
+                        <option value="🇯🇵 Japan|Asia/Tokyo">🇯🇵 Japan (UTC+9)</option>
+                        <option value="🇯🇪 Jersey|Europe/Jersey">🇯🇪 Jersey (UTC+0)</option>
+                        <option value="🇯🇴 Jordan|Asia/Amman">🇯🇴 Jordan (UTC+2)</option>
+                        <option value="🇰🇿 Kazakhstan|Asia/Almaty">🇰🇿 Kazakhstan (UTC+6)</option>
+                        <option value="🇰🇪 Kenya|Africa/Nairobi">🇰🇪 Kenya (UTC+3)</option>
+                        <option value="🇰🇮 Kiribati|Pacific/Tarawa">🇰🇮 Kiribati (UTC+12)</option>
+                        <option value="🇽🇰 Kosovo|Europe/Belgrade">🇽🇰 Kosovo (UTC+1)</option>
+                        <option value="🇰🇼 Kuwait|Asia/Kuwait">🇰🇼 Kuwait (UTC+3)</option>
+                        <option value="🇰🇬 Kyrgyzstan|Asia/Bishkek">🇰🇬 Kyrgyzstan (UTC+6)</option>
+                        <option value="🇱🇦 Laos|Asia/Vientiane">🇱🇦 Laos (UTC+7)</option>
+                        <option value="🇱🇻 Latvia|Europe/Riga">🇱🇻 Latvia (UTC+2)</option>
+                        <option value="🇱🇧 Lebanon|Asia/Beirut">🇱🇧 Lebanon (UTC+2)</option>
+                        <option value="🇱🇸 Lesotho|Africa/Maseru">🇱🇸 Lesotho (UTC+2)</option>
+                        <option value="🇱🇷 Liberia|Africa/Monrovia">🇱🇷 Liberia (UTC+0)</option>
+                        <option value="🇱🇾 Libya|Africa/Tripoli">🇱🇾 Libya (UTC+2)</option>
+                        <option value="🇱🇮 Liechtenstein|Europe/Vaduz">🇱🇮 Liechtenstein (UTC+1)</option>
+                        <option value="🇱🇹 Lithuania|Europe/Vilnius">🇱🇹 Lithuania (UTC+2)</option>
+                        <option value="🇱🇺 Luxembourg|Europe/Luxembourg">🇱🇺 Luxembourg (UTC+1)</option>
+                        <option value="🇲🇴 Macao|Asia/Macau">🇲🇴 Macao (UTC+8)</option>
+                        <option value="🇲🇰 North Macedonia|Europe/Skopje">🇲🇰 North Macedonia (UTC+1)</option>
+                        <option value="🇲🇬 Madagascar|Indian/Antananarivo">🇲🇬 Madagascar (UTC+3)</option>
+                        <option value="🇲🇼 Malawi|Africa/Blantyre">🇲🇼 Malawi (UTC+2)</option>
+                        <option value="🇲🇾 Malaysia|Asia/Kuala_Lumpur">🇲🇾 Malaysia (UTC+8)</option>
+                        <option value="🇲🇻 Maldives|Indian/Maldives">🇲🇻 Maldives (UTC+5)</option>
+                        <option value="🇲🇱 Mali|Africa/Bamako">🇲🇱 Mali (UTC+0)</option>
+                        <option value="🇲🇹 Malta|Europe/Malta">🇲🇹 Malta (UTC+1)</option>
+                        <option value="🇲🇭 Marshall Islands|Pacific/Majuro">🇲🇭 Marshall Islands (UTC+12)</option>
+                        <option value="🇲🇶 Martinique|America/Martinique">🇲🇶 Martinique (UTC-4)</option>
+                        <option value="🇲🇷 Mauritania|Africa/Nouakchott">🇲🇷 Mauritania (UTC+0)</option>
+                        <option value="🇲🇺 Mauritius|Indian/Mauritius">🇲🇺 Mauritius (UTC+4)</option>
+                        <option value="🇾🇹 Mayotte|Indian/Mayotte">🇾🇹 Mayotte (UTC+3)</option>
+                        <option value="🇲🇽 Mexico|America/Mexico_City">🇲🇽 Mexico (UTC-6)</option>
+                        <option value="🇫🇲 Micronesia|Pacific/Chuuk">🇫🇲 Micronesia (UTC+10)</option>
+                        <option value="🇲🇩 Moldova|Europe/Chisinau">🇲🇩 Moldova (UTC+2)</option>
+                        <option value="🇲🇨 Monaco|Europe/Monaco">🇲🇨 Monaco (UTC+1)</option>
+                        <option value="🇲🇳 Mongolia|Asia/Ulaanbaatar">🇲🇳 Mongolia (UTC+8)</option>
+                        <option value="🇲🇪 Montenegro|Europe/Podgorica">🇲🇪 Montenegro (UTC+1)</option>
+                        <option value="🇲🇸 Montserrat|America/Montserrat">🇲🇸 Montserrat (UTC-4)</option>
+                        <option value="🇲🇦 Morocco|Africa/Casablanca">🇲🇦 Morocco (UTC+1)</option>
+                        <option value="🇲🇿 Mozambique|Africa/Maputo">🇲🇿 Mozambique (UTC+2)</option>
+                        <option value="🇲🇲 Myanmar (Burma)|Asia/Yangon">🇲🇲 Myanmar (Burma) (UTC+6:30)</option>
+                        <option value="🇳🇦 Namibia|Africa/Windhoek">🇳🇦 Namibia (UTC+2)</option>
+                        <option value="🇳🇷 Nauru|Pacific/Nauru">🇳🇷 Nauru (UTC+12)</option>
+                        <option value="🇳🇵 Nepal|Asia/Kathmandu">🇳🇵 Nepal (UTC+5:45)</option>
+                        <option value="🇳🇱 Netherlands|Europe/Amsterdam">🇳🇱 Netherlands (UTC+1)</option>
+                        <option value="🇳🇨 New Caledonia|Pacific/Noumea">🇳🇨 New Caledonia (UTC+11)</option>
+                        <option value="🇳🇿 New Zealand|Pacific/Auckland">🇳🇿 New Zealand (UTC+12)</option>
+                        <option value="🇳🇮 Nicaragua|America/Managua">🇳🇮 Nicaragua (UTC-6)</option>
+                        <option value="🇳🇪 Niger|Africa/Niamey">🇳🇪 Niger (UTC+1)</option>
+                        <option value="🇳🇬 Nigeria|Africa/Lagos">🇳🇬 Nigeria (UTC+1)</option>
+                        <option value="🇳🇺 Niue|Pacific/Niue">🇳🇺 Niue (UTC-11)</option>
+                        <option value="🇳🇫 Norfolk Island|Pacific/Norfolk">🇳🇫 Norfolk Island (UTC+11)</option>
+                        <option value="🇰🇵 North Korea|Asia/Pyongyang">🇰🇵 North Korea (UTC+9)</option>
+                        <option value="🇲🇰 North Macedonia|Europe/Skopje">🇲🇰 North Macedonia (UTC+1)</option>
+                        <option value="🇲🇵 Northern Mariana Islands|Pacific/Saipan">🇲🇵 Northern Mariana Islands (UTC+10)</option>
+                        <option value="🇳🇴 Norway|Europe/Oslo">🇳🇴 Norway (UTC+1)</option>
+                        <option value="🇴🇲 Oman|Asia/Muscat">🇴🇲 Oman (UTC+4)</option>
+                        <option value="🇵🇰 Pakistan|Asia/Karachi">🇵🇰 Pakistan (UTC+5)</option>
+                        <option value="🇵🇼 Palau|Pacific/Palau">🇵🇼 Palau (UTC+9)</option>
+                        <option value="🇵🇸 Palestine|Asia/Gaza">🇵🇸 Palestine (UTC+2)</option>
+                        <option value="🇵🇦 Panama|America/Panama">🇵🇦 Panama (UTC-5)</option>
+                        <option value="🇵🇬 Papua New Guinea|Pacific/Port_Moresby">🇵🇬 Papua New Guinea (UTC+10)</option>
+                        <option value="🇵🇾 Paraguay|America/Asuncion">🇵🇾 Paraguay (UTC-4)</option>
+                        <option value="🇵🇪 Peru|America/Lima">🇵🇪 Peru (UTC-5)</option>
+                        <option value="🇵🇭 Philippines|Asia/Manila">🇵🇭 Philippines (UTC+8)</option>
+                        <option value="🇵🇳 Pitcairn Islands|Pacific/Pitcairn">🇵🇳 Pitcairn Islands (UTC-8)</option>
+                        <option value="🇵🇱 Poland|Europe/Warsaw">🇵🇱 Poland (UTC+1)</option>
+                        <option value="🇵🇹 Portugal|Europe/Lisbon">🇵🇹 Portugal (UTC+0)</option>
+                        <option value="🇵🇷 Puerto Rico|America/Puerto_Rico">🇵🇷 Puerto Rico (UTC-4)</option>
+                        <option value="🇶🇦 Qatar|Asia/Qatar">🇶🇦 Qatar (UTC+3)</option>
+                        <option value="🇷🇴 Romania|Europe/Bucharest">🇷🇴 Romania (UTC+2)</option>
+                        <option value="🇷🇺 Russia|Europe/Moscow">🇷🇺 Russia (UTC+3)</option>
+                        <option value="🇷🇼 Rwanda|Africa/Kigali">🇷🇼 Rwanda (UTC+2)</option>
+                        <option value="🇼🇸 Samoa|Pacific/Apia">🇼🇸 Samoa (UTC+13)</option>
+                        <option value="🇸🇲 San Marino|Europe/San_Marino">🇸🇲 San Marino (UTC+1)</option>
+                        <option value="🇸🇹 São Tomé & Príncipe|Africa/Sao_Tome">🇸🇹 São Tomé & Príncipe (UTC+0)</option>
+                        <option value="🇸🇦 Saudi Arabia|Asia/Riyadh">🇸🇦 Saudi Arabia (UTC+3)</option>
+                        <option value="🇸🇳 Senegal|Africa/Dakar">🇸🇳 Senegal (UTC+0)</option>
+                        <option value="🇷🇸 Serbia|Europe/Belgrade">🇷🇸 Serbia (UTC+1)</option>
+                        <option value="🇸🇨 Seychelles|Indian/Mahe">🇸🇨 Seychelles (UTC+4)</option>
+                        <option value="🇸🇱 Sierra Leone|Africa/Freetown">🇸🇱 Sierra Leone (UTC+0)</option>
+                        <option value="🇸🇬 Singapore|Asia/Singapore">🇸🇬 Singapore (UTC+8)</option>
+                        <option value="🇸🇽 Sint Maarten|America/Lower_Princes">🇸🇽 Sint Maarten (UTC-4)</option>
+                        <option value="🇸🇰 Slovakia|Europe/Bratislava">🇸🇰 Slovakia (UTC+1)</option>
+                        <option value="🇸🇮 Slovenia|Europe/Ljubljana">🇸🇮 Slovenia (UTC+1)</option>
+                        <option value="🇸🇧 Solomon Islands|Pacific/Guadalcanal">🇸🇧 Solomon Islands (UTC+11)</option>
+                        <option value="🇸🇴 Somalia|Africa/Mogadishu">🇸🇴 Somalia (UTC+3)</option>
+                        <option value="🇿🇦 South Africa|Africa/Johannesburg">🇿🇦 South Africa (UTC+2)</option>
+                        <option value="🇰🇷 South Korea|Asia/Seoul">🇰🇷 South Korea (UTC+9)</option>
+                        <option value="🇸🇸 South Sudan|Africa/Juba">🇸🇸 South Sudan (UTC+3)</option>
+                        <option value="🇪🇸 Spain|Europe/Madrid">🇪🇸 Spain (UTC+1)</option>
+                        <option value="🇱🇰 Sri Lanka|Asia/Colombo">🇱🇰 Sri Lanka (UTC+5:30)</option>
+                        <option value="🇧🇱 St. Barthélemy|America/St_Barthelemy">🇧🇱 St. Barthélemy (UTC-4)</option>
+                        <option value="🇸🇭 St. Helena|Atlantic/St_Helena">🇸🇭 St. Helena (UTC+0)</option>
+                        <option value="🇰🇳 St. Kitts & Nevis|America/St_Kitts">🇰🇳 St. Kitts & Nevis (UTC-4)</option>
+                        <option value="🇱🇨 St. Lucia|America/St_Lucia">🇱🇨 St. Lucia (UTC-4)</option>
+                        <option value="🇲🇫 St. Martin|America/Marigot">🇲🇫 St. Martin (UTC-4)</option>
+                        <option value="🇵🇲 St. Pierre & Miquelon|America/Miquelon">🇵🇲 St. Pierre & Miquelon (UTC-3)</option>
+                        <option value="🇻🇨 St. Vincent & Grenadines|America/St_Vincent">🇻🇨 St. Vincent & Grenadines (UTC-4)</option>
+                        <option value="🇸🇩 Sudan|Africa/Khartoum">🇸🇩 Sudan (UTC+2)</option>
+                        <option value="🇸🇷 Suriname|America/Paramaribo">🇸🇷 Suriname (UTC-3)</option>
+                        <option value="🇸🇯 Svalbard & Jan Mayen|Arctic/Longyearbyen">🇸🇯 Svalbard & Jan Mayen (UTC+1)</option>
+                        <option value="🇸🇪 Sweden|Europe/Stockholm">🇸🇪 Sweden (UTC+1)</option>
+                        <option value="🇨🇭 Switzerland|Europe/Zurich">🇨🇭 Switzerland (UTC+1)</option>
+                        <option value="🇸🇾 Syria|Asia/Damascus">🇸🇾 Syria (UTC+2)</option>
+                        <option value="🇹🇼 Taiwan|Asia/Taipei">🇹🇼 Taiwan (UTC+8)</option>
+                        <option value="🇹🇯 Tajikistan|Asia/Dushanbe">🇹🇯 Tajikistan (UTC+5)</option>
+                        <option value="🇹🇿 Tanzania|Africa/Dar_es_Salaam">🇹🇿 Tanzania (UTC+3)</option>
+                        <option value="🇹🇭 Thailand|Asia/Bangkok">🇹🇭 Thailand (UTC+7)</option>
+                        <option value="🇹🇱 Timor-Leste|Asia/Dili">🇹🇱 Timor-Leste (UTC+9)</option>
+                        <option value="🇹🇬 Togo|Africa/Lome">🇹🇬 Togo (UTC+0)</option>
+                        <option value="🇹🇰 Tokelau|Pacific/Fakaofo">🇹🇰 Tokelau (UTC+13)</option>
+                        <option value="🇹🇴 Tonga|Pacific/Tongatapu">🇹🇴 Tonga (UTC+13)</option>
+                        <option value="🇹🇹 Trinidad & Tobago|America/Port_of_Spain">🇹🇹 Trinidad & Tobago (UTC-4)</option>
+                        <option value="🇹🇳 Tunisia|Africa/Tunis">🇹🇳 Tunisia (UTC+1)</option>
+                        <option value="🇹🇷 Turkey|Europe/Istanbul">🇹🇷 Turkey (UTC+3)</option>
+                        <option value="🇹🇲 Turkmenistan|Asia/Ashgabat">🇹🇲 Turkmenistan (UTC+5)</option>
+                        <option value="🇹🇨 Turks & Caicos Islands|America/Grand_Turk">🇹🇨 Turks & Caicos Islands (UTC-5)</option>
+                        <option value="🇹🇻 Tuvalu|Pacific/Funafuti">🇹🇻 Tuvalu (UTC+12)</option>
+                        <option value="🇺🇬 Uganda|Africa/Kampala">🇺🇬 Uganda (UTC+3)</option>
+                        <option value="🇺🇦 Ukraine|Europe/Kiev">🇺🇦 Ukraine (UTC+2)</option>
+                        <option value="🇦🇪 United Arab Emirates|Asia/Dubai">🇦🇪 United Arab Emirates (UTC+4)</option>
+                        <option value="🇬🇧 United Kingdom|Europe/London">🇬🇧 United Kingdom (UTC+0)</option>
+                        <option value="🇺🇸 United States|America/New_York">🇺🇸 United States (UTC-5)</option>
+                        <option value="🇺🇾 Uruguay|America/Montevideo">🇺🇾 Uruguay (UTC-3)</option>
+                        <option value="🇺🇿 Uzbekistan|Asia/Tashkent">🇺🇿 Uzbekistan (UTC+5)</option>
+                        <option value="🇻🇺 Vanuatu|Pacific/Efate">🇻🇺 Vanuatu (UTC+11)</option>
+                        <option value="🇻🇦 Vatican City|Europe/Vatican">🇻🇦 Vatican City (UTC+1)</option>
+                        <option value="🇻🇪 Venezuela|America/Caracas">🇻🇪 Venezuela (UTC-4)</option>
+                        <option value="🇻🇳 Vietnam|Asia/Ho_Chi_Minh">🇻🇳 Vietnam (UTC+7)</option>
+                        <option value="🇼🇫 Wallis & Futuna|Pacific/Wallis">🇼🇫 Wallis & Futuna (UTC+12)</option>
+                        <option value="🇪🇭 Western Sahara|Africa/El_Aaiun">🇪🇭 Western Sahara (UTC+0)</option>
+                        <option value="🇾🇪 Yemen|Asia/Aden">🇾🇪 Yemen (UTC+3)</option>
+                        <option value="🇿🇲 Zambia|Africa/Lusaka">🇿🇲 Zambia (UTC+2)</option>
+                        <option value="🇿🇼 Zimbabwe|Africa/Harare">🇿🇼 Zimbabwe (UTC+2)</option>
+                        <option value="🌍 Global|Etc/UTC">🌍 Global (UTC)</option>
                     </select>
                 </div>
                 
@@ -662,6 +897,670 @@
             ).slice(0, 10);
         }
 
+        // Mapeo de idiomas soportados por país en NewsAPI
+        const countryLanguages = {
+            ca: ['en', 'fr'],
+            ch: ['de', 'fr', 'it'],
+            be: ['nl', 'fr'],
+            ae: ['ar', 'en'],
+            ma: ['ar', 'fr'],
+            eg: ['ar', 'en'],
+            il: ['he', 'en'],
+            in: ['en', 'hi'],
+            sg: ['en', 'zh'],
+            my: ['en', 'zh'],
+            za: ['en', 'af'],
+            // ... agrega más países con varios idiomas ...
+        };
+        // Lista de idiomas soportados por NewsAPI
+        const languageNames = {
+            ar: 'Arabic',
+            de: 'German',
+            en: 'English',
+            es: 'Spanish',
+            fr: 'French',
+            he: 'Hebrew',
+            it: 'Italian',
+            nl: 'Dutch',
+            no: 'Norwegian',
+            pt: 'Portuguese',
+            ru: 'Russian',
+            se: 'Swedish',
+            ud: 'Urdu',
+            zh: 'Chinese',
+            hi: 'Hindi',
+            ja: 'Japanese',
+            ko: 'Korean',
+            af: 'Afrikaans',
+            th: 'Thai',
+            vi: 'Vietnamese',
+            tr: 'Turkish',
+        };
+        // Lista de fuentes por país+idioma - Base de datos completa de medios internacionales
+        const sourcesByCountryLang = {
+            // ESTADOS UNIDOS (English)
+            'us_en': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'cnn', label: 'CNN' },
+                { value: 'fox-news', label: 'Fox News' },
+                { value: 'nbc-news', label: 'NBC News' },
+                { value: 'abc-news', label: 'ABC News' },
+                { value: 'cbs-news', label: 'CBS News' },
+                { value: 'msnbc', label: 'MSNBC' },
+                { value: 'the-new-york-times', label: 'The New York Times' },
+                { value: 'the-washington-post', label: 'The Washington Post' },
+                { value: 'the-wall-street-journal', label: 'The Wall Street Journal' },
+                { value: 'usa-today', label: 'USA Today' },
+                { value: 'reuters', label: 'Reuters' },
+                { value: 'associated-press', label: 'Associated Press' },
+                { value: 'bloomberg', label: 'Bloomberg' },
+                { value: 'politico', label: 'Politico' },
+                { value: 'the-hill', label: 'The Hill' },
+                { value: 'npr', label: 'NPR' },
+                { value: 'pbs', label: 'PBS NewsHour' },
+                { value: 'time', label: 'Time Magazine' },
+                { value: 'newsweek', label: 'Newsweek' },
+                { value: 'the-huffington-post', label: 'HuffPost' },
+                { value: 'buzzfeed', label: 'BuzzFeed News' },
+                { value: 'vox', label: 'Vox' },
+                { value: 'axios', label: 'Axios' },
+                { value: 'the-daily-beast', label: 'The Daily Beast' }
+            ],
+            
+            // REINO UNIDO (English)
+            'gb_en': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'bbc-news', label: 'BBC News' },
+                { value: 'the-guardian-uk', label: 'The Guardian' },
+                { value: 'independent', label: 'The Independent' },
+                { value: 'the-telegraph', label: 'The Telegraph' },
+                { value: 'daily-mail', label: 'Daily Mail' },
+                { value: 'the-times', label: 'The Times' },
+                { value: 'sky-news', label: 'Sky News' },
+                { value: 'itv-news', label: 'ITV News' },
+                { value: 'channel-4-news', label: 'Channel 4 News' },
+                { value: 'financial-times', label: 'Financial Times' },
+                { value: 'the-economist', label: 'The Economist' },
+                { value: 'reuters-uk', label: 'Reuters UK' },
+                { value: 'metro-uk', label: 'Metro UK' },
+                { value: 'evening-standard', label: 'Evening Standard' },
+                { value: 'the-sun', label: 'The Sun' },
+                { value: 'mirror', label: 'Mirror' },
+                { value: 'express', label: 'Express' },
+                { value: 'the-star', label: 'The Star' },
+                { value: 'huffpost-uk', label: 'HuffPost UK' },
+                { value: 'buzzfeed-uk', label: 'BuzzFeed UK' }
+            ],
+            
+            // CANADÁ (English)
+            'ca_en': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'cbc-news', label: 'CBC News' },
+                { value: 'ctv-news', label: 'CTV News' },
+                { value: 'global-news', label: 'Global News' },
+                { value: 'national-post', label: 'National Post' },
+                { value: 'the-globe-and-mail', label: 'The Globe and Mail' },
+                { value: 'toronto-star', label: 'Toronto Star' },
+                { value: 'montreal-gazette', label: 'Montreal Gazette' },
+                { value: 'vancouver-sun', label: 'Vancouver Sun' },
+                { value: 'edmonton-journal', label: 'Edmonton Journal' },
+                { value: 'calgary-herald', label: 'Calgary Herald' },
+                { value: 'ottawa-citizen', label: 'Ottawa Citizen' },
+                { value: 'winnipeg-free-press', label: 'Winnipeg Free Press' },
+                { value: 'the-province', label: 'The Province' },
+                { value: 'toronto-sun', label: 'Toronto Sun' },
+                { value: 'huffpost-canada', label: 'HuffPost Canada' },
+                { value: 'cbc-sports', label: 'CBC Sports' },
+                { value: 'tsn', label: 'TSN' },
+                { value: 'sportsnet', label: 'Sportsnet' },
+                { value: 'macleans', label: "Maclean's" },
+                { value: 'canoe', label: 'Canoe.com' }
+            ],
+            
+            // CANADÁ (French)
+            'ca_fr': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'radio-canada', label: 'Radio-Canada' },
+                { value: 'tva-nouvelles', label: 'TVA Nouvelles' },
+                { value: 'la-presse', label: 'La Presse' },
+                { value: 'le-devoir', label: 'Le Devoir' },
+                { value: 'journal-de-montreal', label: 'Journal de Montréal' },
+                { value: 'journal-de-quebec', label: 'Journal de Québec' },
+                { value: 'le-soleil', label: 'Le Soleil' },
+                { value: 'la-tribune', label: 'La Tribune' },
+                { value: 'le-nouvelliste', label: 'Le Nouvelliste' },
+                { value: 'l-actualite', label: "L'actualité" },
+                { value: 'le-figaro-canada', label: 'Le Figaro Canada' },
+                { value: 'ici-radio-canada', label: 'ICI Radio-Canada' },
+                { value: 'noovo-info', label: 'Noovo Info' },
+                { value: 'rds', label: 'RDS' },
+                { value: 'tva-sports', label: 'TVA Sports' }
+            ],
+            
+            // FRANCIA (French)
+            'fr_fr': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'le-monde', label: 'Le Monde' },
+                { value: 'le-figaro', label: 'Le Figaro' },
+                { value: 'liberation', label: 'Libération' },
+                { value: 'le-parisien', label: 'Le Parisien' },
+                { value: 'france24', label: 'France 24' },
+                { value: 'bfm-tv', label: 'BFM TV' },
+                { value: 'tf1-info', label: 'TF1 Info' },
+                { value: 'france2', label: 'France 2' },
+                { value: 'france-inter', label: 'France Inter' },
+                { value: 'rtl', label: 'RTL' },
+                { value: 'europe1', label: 'Europe 1' },
+                { value: 'franceinfo', label: 'Franceinfo' },
+                { value: 'lemonde-diplomatique', label: 'Le Monde Diplomatique' },
+                { value: 'nouvel-obs', label: 'Le Nouvel Observateur' },
+                { value: 'l-express', label: "L'Express" },
+                { value: 'marianne', label: 'Marianne' },
+                { value: 'charlie-hebdo', label: 'Charlie Hebdo' },
+                { value: 'le-point', label: 'Le Point' },
+                { value: 'l-equipe', label: "L'Équipe" },
+                { value: 'les-echos', label: 'Les Échos' },
+                { value: 'ouest-france', label: 'Ouest-France' }
+            ],
+            
+            // ALEMANIA (German)
+            'de_de': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'spiegel', label: 'Der Spiegel' },
+                { value: 'bild', label: 'Bild' },
+                { value: 'zeit', label: 'Die Zeit' },
+                { value: 'faz', label: 'Frankfurter Allgemeine Zeitung' },
+                { value: 'sueddeutsche', label: 'Süddeutsche Zeitung' },
+                { value: 'welt', label: 'Die Welt' },
+                { value: 'focus', label: 'Focus' },
+                { value: 'stern', label: 'Stern' },
+                { value: 'ard', label: 'ARD' },
+                { value: 'zdf', label: 'ZDF' },
+                { value: 'rtl-news', label: 'RTL News' },
+                { value: 'n-tv', label: 'n-tv' },
+                { value: 'deutsche-welle', label: 'Deutsche Welle' },
+                { value: 'tagesschau', label: 'Tagesschau' },
+                { value: 'handelsblatt', label: 'Handelsblatt' },
+                { value: 'frankfurter-rundschau', label: 'Frankfurter Rundschau' },
+                { value: 'tagesspiegel', label: 'Der Tagesspiegel' },
+                { value: 'berliner-zeitung', label: 'Berliner Zeitung' },
+                { value: 'taz', label: 'taz' },
+                { value: 'kicker', label: 'Kicker' },
+                { value: 'sport1', label: 'Sport1' }
+            ],
+            
+            // ESPAÑA (Spanish)
+            'es_es': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'el-pais', label: 'El País' },
+                { value: 'el-mundo', label: 'El Mundo' },
+                { value: 'abc-espana', label: 'ABC España' },
+                { value: 'la-vanguardia', label: 'La Vanguardia' },
+                { value: 'el-periodico', label: 'El Periódico' },
+                { value: 'marca', label: 'Marca' },
+                { value: 'as', label: 'AS' },
+                { value: 'sport', label: 'Sport' },
+                { value: 'mundo-deportivo', label: 'Mundo Deportivo' },
+                { value: 'rtve', label: 'RTVE' },
+                { value: 'antena3', label: 'Antena 3' },
+                { value: 'telecinco', label: 'Telecinco' },
+                { value: 'la-sexta', label: 'La Sexta' },
+                { value: 'cuatro', label: 'Cuatro' },
+                { value: 'el-confidencial', label: 'El Confidencial' },
+                { value: 'publico', label: 'Público' },
+                { value: 'eldiario-es', label: 'elDiario.es' },
+                { value: 'ok-diario', label: 'OK Diario' },
+                { value: 'la-razon', label: 'La Razón' },
+                { value: 'el-espanol', label: 'El Español' },
+                { value: '20-minutos', label: '20 Minutos' }
+            ],
+            
+            // ITALIA (Italian)
+            'it_it': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'corriere-della-sera', label: 'Corriere della Sera' },
+                { value: 'la-repubblica', label: 'La Repubblica' },
+                { value: 'la-gazzetta-dello-sport', label: 'La Gazzetta dello Sport' },
+                { value: 'la-stampa', label: 'La Stampa' },
+                { value: 'il-sole-24-ore', label: 'Il Sole 24 Ore' },
+                { value: 'rai-news', label: 'Rai News' },
+                { value: 'mediaset', label: 'Mediaset' },
+                { value: 'sky-tg24', label: 'Sky TG24' },
+                { value: 'la7', label: 'La7' },
+                { value: 'ansa', label: 'ANSA' },
+                { value: 'il-giornale', label: 'Il Giornale' },
+                { value: 'il-fatto-quotidiano', label: 'Il Fatto Quotidiano' },
+                { value: 'huffpost-italy', label: 'HuffPost Italia' },
+                { value: 'fanpage', label: 'Fanpage' },
+                { value: 'tuttosport', label: 'Tuttosport' },
+                { value: 'corriere-dello-sport', label: 'Corriere dello Sport' },
+                { value: 'agi', label: 'AGI' },
+                { value: 'adnkronos', label: 'Adnkronos' },
+                { value: 'il-messaggero', label: 'Il Messaggero' },
+                { value: 'tgcom24', label: 'Tgcom24' },
+                { value: 'il-tempo', label: 'Il Tempo' }
+            ],
+            
+            // JAPÓN (Japanese)
+            'jp_ja': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'nhk', label: 'NHK News' },
+                { value: 'asahi', label: 'Asahi Shimbun' },
+                { value: 'mainichi', label: 'Mainichi Shimbun' },
+                { value: 'yomiuri', label: 'Yomiuri Shimbun' },
+                { value: 'nikkei', label: 'Nikkei' },
+                { value: 'sankei', label: 'Sankei Shimbun' },
+                { value: 'kyodo', label: 'Kyodo News' },
+                { value: 'jiji', label: 'Jiji Press' },
+                { value: 'tbs-news', label: 'TBS News' },
+                { value: 'fuji-tv', label: 'Fuji TV' },
+                { value: 'tv-asahi', label: 'TV Asahi' },
+                { value: 'ntv', label: 'Nippon TV' },
+                { value: 'tv-tokyo', label: 'TV Tokyo' },
+                { value: 'tokyo-shimbun', label: 'Tokyo Shimbun' },
+                { value: 'chunichi', label: 'Chunichi Shimbun' },
+                { value: 'hokkaido', label: 'Hokkaido Shimbun' },
+                { value: 'sports-nippon', label: 'Sports Nippon' },
+                { value: 'sponichi', label: 'Sponichi' },
+                { value: 'nikkan-sports', label: 'Nikkan Sports' },
+                { value: 'hochi', label: 'Sports Hochi' },
+                { value: 'yahoo-japan', label: 'Yahoo! Japan News' }
+            ],
+            
+            // CHINA (Chinese)
+            'cn_zh': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'xinhua', label: 'Xinhua News' },
+                { value: 'peoples-daily', label: "People's Daily" },
+                { value: 'cctv', label: 'CCTV' },
+                { value: 'cgtn', label: 'CGTN' },
+                { value: 'china-daily-cn', label: 'China Daily (中文)' },
+                { value: 'beijing-news', label: 'Beijing News' },
+                { value: 'southern-daily', label: 'Southern Daily' },
+                { value: 'guangming-daily', label: 'Guangming Daily' },
+                { value: 'economic-daily', label: 'Economic Daily' },
+                { value: 'china-youth-daily', label: 'China Youth Daily' },
+                { value: 'workers-daily', label: "Workers' Daily" },
+                { value: 'legal-daily', label: 'Legal Daily' },
+                { value: 'science-technology-daily', label: 'Science & Technology Daily' },
+                { value: 'china-education-daily', label: 'China Education Daily' },
+                { value: 'health-news', label: 'Health News' },
+                { value: 'china-sports-daily', label: 'China Sports Daily' },
+                { value: 'china-culture-daily', label: 'China Culture Daily' },
+                { value: 'china-environment-news', label: 'China Environment News' },
+                { value: 'china-tourism-news', label: 'China Tourism News' },
+                { value: 'china-transport-news', label: 'China Transport News' },
+                { value: 'sina-news', label: 'Sina News' }
+            ],
+            
+            // CHINA (English)
+            'cn_en': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'china-daily', label: 'China Daily' },
+                { value: 'cgtn-english', label: 'CGTN English' },
+                { value: 'xinhua-english', label: 'Xinhua English' },
+                { value: 'global-times', label: 'Global Times' },
+                { value: 'shanghai-daily', label: 'Shanghai Daily' },
+                { value: 'china-plus', label: 'China Plus' },
+                { value: 'ecns', label: 'ECNS' },
+                { value: 'chinadaily-com', label: 'ChinaDaily.com' },
+                { value: 'peoples-daily-english', label: "People's Daily English" },
+                { value: 'beijing-review', label: 'Beijing Review' }
+            ],
+            
+            // INDIA (English)
+            'in_en': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'times-of-india', label: 'Times of India' },
+                { value: 'hindustan-times', label: 'Hindustan Times' },
+                { value: 'the-hindu', label: 'The Hindu' },
+                { value: 'indian-express', label: 'Indian Express' },
+                { value: 'ndtv', label: 'NDTV' },
+                { value: 'zee-news', label: 'Zee News' },
+                { value: 'india-today', label: 'India Today' },
+                { value: 'cnn-news18', label: 'CNN-News18' },
+                { value: 'news18', label: 'News18' },
+                { value: 'republic-tv', label: 'Republic TV' },
+                { value: 'times-now', label: 'Times Now' },
+                { value: 'aaj-tak-english', label: 'Aaj Tak English' },
+                { value: 'business-standard', label: 'Business Standard' },
+                { value: 'economic-times', label: 'Economic Times' },
+                { value: 'mint', label: 'Mint' },
+                { value: 'moneycontrol', label: 'Moneycontrol' },
+                { value: 'deccan-herald', label: 'Deccan Herald' },
+                { value: 'deccan-chronicle', label: 'Deccan Chronicle' },
+                { value: 'telegraph-india', label: 'Telegraph India' },
+                { value: 'firstpost', label: 'Firstpost' },
+                { value: 'the-quint', label: 'The Quint' }
+            ],
+            
+            // BRASIL (Portuguese)
+            'br_pt': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'folha-de-sao-paulo', label: 'Folha de S.Paulo' },
+                { value: 'o-globo', label: 'O Globo' },
+                { value: 'estadao', label: 'Estadão' },
+                { value: 'uol', label: 'UOL' },
+                { value: 'g1', label: 'G1' },
+                { value: 'band-news', label: 'Band News' },
+                { value: 'sbt-news', label: 'SBT News' },
+                { value: 'record-tv', label: 'Record TV' },
+                { value: 'cnn-brasil', label: 'CNN Brasil' },
+                { value: 'jovem-pan', label: 'Jovem Pan' },
+                { value: 'veja', label: 'Veja' },
+                { value: 'epoca', label: 'Época' },
+                { value: 'istoé', label: 'IstoÉ' },
+                { value: 'carta-capital', label: 'Carta Capital' },
+                { value: 'brasil-247', label: 'Brasil 247' },
+                { value: 'correio-braziliense', label: 'Correio Braziliense' },
+                { value: 'zero-hora', label: 'Zero Hora' },
+                { value: 'diario-de-pernambuco', label: 'Diário de Pernambuco' },
+                { value: 'o-dia', label: 'O Dia' },
+                { value: 'lance', label: 'Lance!' },
+                { value: 'globo-esporte', label: 'Globo Esporte' }
+            ],
+            
+            // AUSTRALIA (English)
+            'au_en': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'abc-news-au', label: 'ABC News Australia' },
+                { value: 'sbs-news', label: 'SBS News' },
+                { value: 'nine-news', label: 'Nine News' },
+                { value: 'seven-news', label: 'Seven News' },
+                { value: 'ten-news', label: 'Ten News' },
+                { value: 'sky-news-australia', label: 'Sky News Australia' },
+                { value: 'the-australian', label: 'The Australian' },
+                { value: 'sydney-morning-herald', label: 'Sydney Morning Herald' },
+                { value: 'the-age', label: 'The Age' },
+                { value: 'herald-sun', label: 'Herald Sun' },
+                { value: 'daily-telegraph-au', label: 'Daily Telegraph Australia' },
+                { value: 'courier-mail', label: 'Courier Mail' },
+                { value: 'west-australian', label: 'West Australian' },
+                { value: 'advertiser', label: 'The Advertiser' },
+                { value: 'canberra-times', label: 'Canberra Times' },
+                { value: 'northern-territory-news', label: 'NT News' },
+                { value: 'australian-financial-review', label: 'Australian Financial Review' },
+                { value: 'news-com-au', label: 'News.com.au' },
+                { value: 'crikey', label: 'Crikey' },
+                { value: 'the-conversation-au', label: 'The Conversation Australia' },
+                { value: 'guardian-australia', label: 'Guardian Australia' }
+            ],
+            
+            // RUSIA (Russian)
+            'ru_ru': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'rt-russia', label: 'RT (Russia Today)' },
+                { value: 'sputnik', label: 'Sputnik' },
+                { value: 'tass', label: 'TASS' },
+                { value: 'ria-novosti', label: 'RIA Novosti' },
+                { value: 'interfax', label: 'Interfax' },
+                { value: 'rossiyskaya-gazeta', label: 'Rossiyskaya Gazeta' },
+                { value: 'izvestia', label: 'Izvestia' },
+                { value: 'kommersant', label: 'Kommersant' },
+                { value: 'vedomosti', label: 'Vedomosti' },
+                { value: 'novaya-gazeta', label: 'Novaya Gazeta' },
+                { value: 'lenta-ru', label: 'Lenta.ru' },
+                { value: 'gazeta-ru', label: 'Gazeta.ru' },
+                { value: 'mk', label: 'Moskovskij Komsomolets' },
+                { value: 'kp', label: 'Komsomolskaya Pravda' },
+                { value: 'arguments-facts', label: 'Arguments and Facts' },
+                { value: 'rbc', label: 'RBC' },
+                { value: 'echo-moscow', label: 'Echo of Moscow' },
+                { value: 'meduza', label: 'Meduza' },
+                { value: 'dozhd', label: 'TV Rain' },
+                { value: 'channel-one', label: 'Channel One Russia' },
+                { value: 'ntv-ru', label: 'NTV Russia' }
+            ],
+            
+            // MÉXICO (Spanish)
+            'mx_es': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'televisa', label: 'Televisa' },
+                { value: 'tv-azteca', label: 'TV Azteca' },
+                { value: 'milenio', label: 'Milenio' },
+                { value: 'reforma', label: 'Reforma' },
+                { value: 'el-universal-mx', label: 'El Universal' },
+                { value: 'excelsior', label: 'Excélsior' },
+                { value: 'la-jornada', label: 'La Jornada' },
+                { value: 'proceso', label: 'Proceso' },
+                { value: 'animal-politico', label: 'Animal Político' },
+                { value: 'el-financiero', label: 'El Financiero' },
+                { value: 'expansion', label: 'Expansión' },
+                { value: 'forbes-mexico', label: 'Forbes México' },
+                { value: 'cnn-mexico', label: 'CNN México' },
+                { value: 'aristegui-noticias', label: 'Aristegui Noticias' },
+                { value: 'sin-embargo', label: 'Sin Embargo' },
+                { value: 'el-economista', label: 'El Economista' },
+                { value: 'record-mx', label: 'Récord México' },
+                { value: 'medio-tiempo', label: 'Medio Tiempo' },
+                { value: 'once-tv', label: 'Once TV' },
+                { value: 'canal-22', label: 'Canal 22' },
+                { value: 'mvs-noticias', label: 'MVS Noticias' }
+            ],
+            
+            // ARGENTINA (Spanish)
+            'ar_es': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'clarin', label: 'Clarín' },
+                { value: 'la-nacion', label: 'La Nación' },
+                { value: 'pagina-12', label: 'Página/12' },
+                { value: 'infobae', label: 'Infobae' },
+                { value: 'ambito', label: 'Ámbito' },
+                { value: 'perfil', label: 'Perfil' },
+                { value: 'cronica', label: 'Crónica' },
+                { value: 'ole', label: 'Olé' },
+                { value: 'tyc-sports', label: 'TyC Sports' },
+                { value: 'espn-argentina', label: 'ESPN Argentina' },
+                { value: 'fox-sports-ar', label: 'Fox Sports Argentina' },
+                { value: 'telefe', label: 'Telefe' },
+                { value: 'canal-13-ar', label: 'Canal 13 Argentina' },
+                { value: 'america-tv', label: 'América TV' },
+                { value: 'tn', label: 'TN - Todo Noticias' },
+                { value: 'c5n', label: 'C5N' },
+                { value: 'a24', label: 'A24' },
+                { value: 'canal-26', label: 'Canal 26' },
+                { value: 'cronista', label: 'El Cronista' },
+                { value: 'minuto-uno', label: 'Minuto Uno' },
+                { value: 'tiempo-argentino', label: 'Tiempo Argentino' }
+            ],
+            
+            // SUIZA múltiples idiomas
+            'ch_de': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'nzz', label: 'Neue Zürcher Zeitung' },
+                { value: 'tages-anzeiger', label: 'Tages-Anzeiger' },
+                { value: 'blick', label: 'Blick' },
+                { value: '20-minuten', label: '20 Minuten' },
+                { value: 'watson-ch', label: 'Watson.ch' },
+                { value: 'srf', label: 'SRF' },
+                { value: 'swissinfo-de', label: 'SWI swissinfo.ch (DE)' },
+                { value: 'basellandschaftliche', label: 'Basellandschaftliche Zeitung' },
+                { value: 'aargauer-zeitung', label: 'Aargauer Zeitung' },
+                { value: 'st-galler-tagblatt', label: 'St. Galler Tagblatt' }
+            ],
+            'ch_fr': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'le-temps', label: 'Le Temps' },
+                { value: 'tribune-de-geneve', label: 'Tribune de Genève' },
+                { value: '24-heures', label: '24 heures' },
+                { value: 'le-matin', label: 'Le Matin' },
+                { value: 'rts', label: 'RTS' },
+                { value: 'swissinfo-fr', label: 'SWI swissinfo.ch (FR)' },
+                { value: 'la-liberte', label: 'La Liberté' },
+                { value: 'arc-info', label: 'arcinfo' },
+                { value: 'journal-du-jura', label: 'Journal du Jura' },
+                { value: 'le-nouvelliste-ch', label: 'Le Nouvelliste' }
+            ],
+            'ch_it': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'corriere-del-ticino', label: 'Corriere del Ticino' },
+                { value: 'la-regione', label: 'La Regione' },
+                { value: 'giornale-del-popolo', label: 'Giornale del Popolo' },
+                { value: 'rsi', label: 'RSI' },
+                { value: 'swissinfo-it', label: 'SWI swissinfo.ch (IT)' },
+                { value: 'tio', label: 'Tio.ch' },
+                { value: 'lanostratv', label: 'LaNostraTV' }
+            ],
+            
+            // HOLANDA (Dutch)
+            'nl_nl': [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'nos', label: 'NOS' },
+                { value: 'rtl-nieuws', label: 'RTL Nieuws' },
+                { value: 'telegraaf', label: 'De Telegraaf' },
+                { value: 'volkskrant', label: 'de Volkskrant' },
+                { value: 'ad', label: 'Algemeen Dagblad' },
+                { value: 'nrc', label: 'NRC' },
+                { value: 'trouw', label: 'Trouw' },
+                { value: 'parool', label: 'Het Parool' },
+                { value: 'financieele-dagblad', label: 'Het Financieele Dagblad' },
+                { value: 'nu-nl', label: 'NU.nl' },
+                { value: 'bnn-vara', label: 'BNNVara' },
+                { value: 'veronica', label: 'Veronica' },
+                { value: 'sbs6', label: 'SBS6' },
+                { value: 'rtl4', label: 'RTL4' },
+                { value: 'eo', label: 'EO' },
+                { value: 'omroep-west', label: 'Omroep West' },
+                { value: 'omroep-brabant', label: 'Omroep Brabant' },
+                { value: 'rtvnh', label: 'NH Nieuws' },
+                { value: 'tubantia', label: 'Tubantia' },
+                { value: 'bnr', label: 'BNR Nieuwsradio' },
+                { value: 'radio1', label: 'NPO Radio 1' }
+            ],
+            
+            // Global/International sources
+            global: [
+                { value: 'any', label: '🌟 Any reliable source' },
+                { value: 'bbc-news', label: 'BBC News' },
+                { value: 'cnn-international', label: 'CNN International' },
+                { value: 'reuters', label: 'Reuters' },
+                { value: 'associated-press', label: 'Associated Press' },
+                { value: 'al-jazeera-english', label: 'Al Jazeera English' },
+                { value: 'france24-english', label: 'France 24 English' },
+                { value: 'deutsche-welle-english', label: 'Deutsche Welle English' },
+                { value: 'euronews', label: 'Euronews' },
+                { value: 'bloomberg', label: 'Bloomberg' },
+                { value: 'financial-times', label: 'Financial Times' },
+                { value: 'the-economist', label: 'The Economist' },
+                { value: 'time-international', label: 'Time International' },
+                { value: 'newsweek-international', label: 'Newsweek International' },
+                { value: 'guardian-international', label: 'The Guardian International' },
+                { value: 'independent-international', label: 'The Independent International' }
+            ]
+        };
+
+        document.getElementById('country_interest').addEventListener('change', function() {
+            const country = this.value;
+            const languageGroup = document.getElementById('language-group');
+            const languageSelect = document.getElementById('language_interest');
+            const sourcesGroup = document.getElementById('sources-group');
+            const sourcesCheckboxes = document.getElementById('sources-checkboxes');
+            sourcesCheckboxes.innerHTML = '';
+            languageSelect.innerHTML = '';
+            // Si el país tiene varios idiomas, mostrar el selector de idioma
+            if (countryLanguages[country] && countryLanguages[country].length > 1) {
+                languageGroup.style.display = 'block';
+                countryLanguages[country].forEach(lang => {
+                    const option = document.createElement('option');
+                    option.value = lang;
+                    option.textContent = languageNames[lang] || lang;
+                    languageSelect.appendChild(option);
+                });
+                // Disparar el evento para mostrar las fuentes del primer idioma por defecto
+                languageSelect.dispatchEvent(new Event('change'));
+            } else if (countryLanguages[country] && countryLanguages[country].length === 1) {
+                languageGroup.style.display = 'none';
+                const lang = countryLanguages[country][0];
+                showSources(country, lang);
+            } else {
+                languageGroup.style.display = 'none';
+                showSources(country, null);
+            }
+        });
+
+        document.getElementById('language_interest').addEventListener('change', function() {
+            const country = document.getElementById('country_interest').value;
+            const lang = this.value;
+            showSources(country, lang);
+        });
+
+        function showSources(country, lang) {
+            const sourcesGroup = document.getElementById('sources-group');
+            const sourcesCheckboxes = document.getElementById('sources-checkboxes');
+            sourcesCheckboxes.innerHTML = '';
+            let sources = [];
+            
+            // Determine which sources to show based on country and language
+            const key = lang ? `${country}_${lang}` : country;
+            if (sourcesByCountryLang[key]) {
+                sources = sourcesByCountryLang[key];
+            } else if (sourcesByCountryLang[country]) {
+                sources = sourcesByCountryLang[country];
+            } else {
+                sources = sourcesByCountryLang['global'];
+            }
+            
+            if (sources && sources.length > 0) {
+                sources.forEach(source => {
+                    const label = document.createElement('label');
+                    label.className = 'checkbox-item';
+                    
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.name = 'sources';
+                    checkbox.value = source.value;
+                    checkbox.addEventListener('change', updateSelectedSources);
+                    
+                    const span = document.createElement('span');
+                    span.textContent = source.label;
+                    
+                    label.appendChild(checkbox);
+                    label.appendChild(span);
+                    sourcesCheckboxes.appendChild(label);
+                });
+                sourcesGroup.style.display = 'block';
+            } else {
+                sourcesGroup.style.display = 'none';
+            }
+        }
+
+        function updateSelectedSources() {
+            const selectedSources = document.querySelectorAll('input[name="sources"]:checked');
+            const selectedSourcesContainer = document.getElementById('selected-sources');
+            const selectedSourcesList = document.getElementById('selected-sources-list');
+            
+            // Clear existing selected sources
+            selectedSourcesList.innerHTML = '';
+            
+            if (selectedSources.length > 0) {
+                selectedSources.forEach(checkbox => {
+                    const sourceLabel = checkbox.parentElement.querySelector('span').textContent;
+                    
+                    const tag = document.createElement('div');
+                    tag.className = 'selected-source-tag';
+                    
+                    const labelSpan = document.createElement('span');
+                    labelSpan.textContent = sourceLabel;
+                    
+                    const removeBtn = document.createElement('button');
+                    removeBtn.className = 'remove-source';
+                    removeBtn.innerHTML = '×';
+                    removeBtn.type = 'button';
+                    removeBtn.addEventListener('click', () => {
+                        checkbox.checked = false;
+                        updateSelectedSources();
+                    });
+                    
+                    tag.appendChild(labelSpan);
+                    tag.appendChild(removeBtn);
+                    selectedSourcesList.appendChild(tag);
+                });
+                selectedSourcesContainer.classList.add('show');
+            } else {
+                selectedSourcesContainer.classList.remove('show');
+            }
+        }
+
         // Form submission
         document.getElementById('preferencesForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -683,51 +1582,116 @@
             form.style.display = 'none';
             loading.style.display = 'block';
             
+            // Generate unique client ID for personalization
+            const clientId = generateClientId();
+            
             // Collect form data
             const formData = new FormData(form);
-            const countries = Array.from(document.querySelectorAll('input[name="countries"]:checked')).map(cb => cb.value);
-            const sources = Array.from(document.querySelectorAll('input[name="sources"]:checked')).map(cb => cb.value);
+            const selectedCountries = Array.from(document.querySelectorAll('input[name="countries"]:checked')).map(cb => cb.value);
+            const selectedSources = Array.from(document.querySelectorAll('input[name="sources"]:checked')).map(cb => cb.value);
+            const selectedInterests = Array.from(interests).map(cb => cb.value);
             
-            const data = {
-                name: formData.get('name'),
+            // Process country and timezone data
+            const countryTimezone = formData.get('country_timezone');
+            const [countryName, timezone] = countryTimezone ? countryTimezone.split('|') : ['', ''];
+            const countryCode = extractCountryCode(countryName);
+            
+            // Map sources to NewsAPI format
+            const newsApiSources = mapToNewsApiSources(selectedSources, selectedCountries);
+            
+            // Prepare personalized data structure for n8n/NewsAPI
+            const personalizedData = {
+                // Client identification
+                clientId: clientId,
                 email: formData.get('email'),
+                name: formData.get('name'),
                 telegram: formData.get('telegram') || '',
-                interests: Array.from(interests).map(cb => cb.value),
-                countries: countries,
-                sources: sources,
-                frequency: formData.get('frequency'),
-                timezone: formData.get('timezone'),
+                
+                // News preferences for NewsAPI
+                newsPreferences: {
+                    topics: selectedInterests, // For NewsAPI category parameter
+                    countries: selectedCountries.map(country => extractCountryCode(country)), // ISO country codes
+                    sources: newsApiSources.validSources, // NewsAPI source IDs
+                    language: detectLanguage(selectedCountries[0]), // Primary language for NewsAPI
+                    frequency: formData.get('frequency'),
+                },
+                
+                // Geographical data
+                location: {
+                    primaryCountry: countryCode,
+                    timezone: timezone,
+                    selectedCountries: selectedCountries
+                },
+                
+                // Additional client data
+                metadata: {
+                    timestamp: new Date().toISOString(),
+                    source: 'simply-news-survey',
+                    version: '2.0',
+                    invalidSources: newsApiSources.invalidSources, // For debugging
+                    totalSourcesSelected: selectedSources.length,
+                    browserLanguage: navigator.language,
+                    userAgent: navigator.userAgent.substring(0, 100) // Truncated for privacy
+                },
+                
+                // Comments
                 comments: formData.get('comments') || '',
-                timestamp: new Date().toISOString(),
-                source: 'simply-news-survey'
+                
+                // For n8n workflow routing
+                workflowConfig: {
+                    enablePersonalization: true,
+                    createSchedule: true,
+                    setupTelegramBot: formData.get('telegram') ? true : false,
+                    clientType: 'survey_subscriber'
+                }
             };
             
             try {
-                // Replace with your n8n webhook URL
-                const webhookUrl = 'TU_URL_DEL_WEBHOOK_N8N_AQUI';
+                // Primary webhook for client data and workflow setup
+                const webhookUrl = 'https://your-n8n-instance.com/webhook/simply-news-client-setup';
                 
                 const response = await fetch(webhookUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'X-Client-ID': clientId,
+                        'X-Source': 'simply-news-survey'
                     },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(personalizedData)
                 });
                 
                 if (response.ok) {
+                    const result = await response.json();
+                    
                     // Show success message
                     loading.style.display = 'none';
                     successMessage.style.display = 'block';
+                    
+                    // Store client ID in localStorage for future reference
+                    localStorage.setItem('simply_news_client_id', clientId);
+                    localStorage.setItem('simply_news_setup_date', new Date().toISOString());
                     
                     // Optional: send to Google Analytics
                     if (typeof gtag !== 'undefined') {
                         gtag('event', 'survey_submitted', {
                             'event_category': 'engagement',
-                            'event_label': 'preferences_survey'
+                            'event_label': 'preferences_survey',
+                            'custom_parameters': {
+                                'client_id': clientId,
+                                'sources_count': selectedSources.length,
+                                'countries_count': selectedCountries.length,
+                                'interests_count': selectedInterests.length
+                            }
                         });
                     }
+                    
+                    // Optional: Test NewsAPI connection (for debugging)
+                    if (result.testMode === true) {
+                        testNewsApiConnection(personalizedData.newsPreferences);
+                    }
+                    
                 } else {
-                    throw new Error('Server error');
+                    throw new Error(`Server error: ${response.status}`);
                 }
                 
             } catch (error) {
@@ -740,6 +1704,129 @@
                 submitBtn.disabled = false;
             }
         });
+        
+        // Helper functions for NewsAPI integration
+        function generateClientId() {
+            const timestamp = Date.now();
+            const random = Math.random().toString(36).substr(2, 9);
+            return `sn_${timestamp}_${random}`;
+        }
+        
+        function extractCountryCode(countryString) {
+            if (!countryString) return '';
+            // Extract country code from format "🇺🇸 United States"
+            const match = countryString.match(/🇺🇸|🇬🇧|🇨🇦|🇫🇷|🇩🇪|🇪🇸|🇮🇹|🇯🇵|🇨🇳|🇮🇳|🇧🇷|🇦🇺|🇷🇺|🇲🇽|🇦🇷|🇨🇭|🇳🇱/);
+            
+            const flagToCode = {
+                '🇺🇸': 'us', '🇬🇧': 'gb', '🇨🇦': 'ca', '🇫🇷': 'fr', '🇩🇪': 'de',
+                '🇪🇸': 'es', '🇮🇹': 'it', '🇯🇵': 'jp', '🇨🇳': 'cn', '🇮🇳': 'in',
+                '🇧🇷': 'br', '🇦🇺': 'au', '🇷🇺': 'ru', '🇲🇽': 'mx', '🇦🇷': 'ar',
+                '🇨🇭': 'ch', '🇳🇱': 'nl'
+            };
+            
+            return match ? flagToCode[match[0]] : '';
+        }
+        
+        function detectLanguage(countryString) {
+            const countryCode = extractCountryCode(countryString);
+            const countryToLanguage = {
+                'us': 'en', 'gb': 'en', 'ca': 'en', 'au': 'en',
+                'fr': 'fr', 'de': 'de', 'es': 'es', 'it': 'it',
+                'jp': 'ja', 'cn': 'zh', 'in': 'en', 'br': 'pt',
+                'ru': 'ru', 'mx': 'es', 'ar': 'es', 'ch': 'de', 'nl': 'nl'
+            };
+            
+            return countryToLanguage[countryCode] || 'en';
+        }
+        
+        function mapToNewsApiSources(selectedSources, selectedCountries) {
+            // Map our internal source IDs to actual NewsAPI source IDs
+            const newsApiSourceMap = {
+                // US Sources
+                'cnn': 'cnn',
+                'fox-news': 'fox-news',
+                'nbc-news': 'nbc-news',
+                'abc-news': 'abc-news',
+                'cbs-news': 'cbs-news',
+                'the-new-york-times': 'the-new-york-times',
+                'the-washington-post': 'the-washington-post',
+                'the-wall-street-journal': 'the-wall-street-journal',
+                'usa-today': 'usa-today',
+                'reuters': 'reuters',
+                'associated-press': 'associated-press',
+                'bloomberg': 'bloomberg',
+                'politico': 'politico',
+                'the-hill': 'the-hill',
+                'time': 'time',
+                'newsweek': 'newsweek',
+                
+                // UK Sources
+                'bbc-news': 'bbc-news',
+                'the-guardian-uk': 'the-guardian-uk',
+                'independent': 'independent',
+                'daily-mail': 'daily-mail',
+                'financial-times': 'financial-times',
+                'the-economist': 'the-economist',
+                
+                // Other major international sources
+                'al-jazeera-english': 'al-jazeera-english',
+                'france24': 'france24',
+                'deutsche-welle': 'deutsche-welle',
+                
+                // Add more mappings as needed...
+                // Note: Many sources might not be in NewsAPI, we'll handle this
+            };
+            
+            const validSources = [];
+            const invalidSources = [];
+            
+            selectedSources.forEach(source => {
+                if (source === 'any') {
+                    // 'any' means use NewsAPI without source restriction
+                    return;
+                }
+                
+                if (newsApiSourceMap[source]) {
+                    validSources.push(newsApiSourceMap[source]);
+                } else {
+                    invalidSources.push(source);
+                }
+            });
+            
+            return {
+                validSources: validSources,
+                invalidSources: invalidSources,
+                useAnySource: selectedSources.includes('any')
+            };
+        }
+        
+        // Optional: Test NewsAPI connection (for development/debugging)
+        async function testNewsApiConnection(newsPreferences) {
+            try {
+                const testUrl = '/api/test-newsapi'; // Your backend endpoint
+                const testData = {
+                    sources: newsPreferences.sources.slice(0, 5), // Test with first 5 sources
+                    topics: newsPreferences.topics.slice(0, 2), // Test with first 2 topics
+                    countries: newsPreferences.countries.slice(0, 1), // Test with first country
+                    language: newsPreferences.language
+                };
+                
+                const response = await fetch(testUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(testData)
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log('NewsAPI test successful:', result);
+                } else {
+                    console.warn('NewsAPI test failed:', response.status);
+                }
+            } catch (error) {
+                console.warn('NewsAPI test error:', error);
+            }
+        }
     </script>
 </body>
 </html> 

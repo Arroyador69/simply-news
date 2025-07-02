@@ -1,0 +1,95 @@
+{
+  "clientId": "sn_1703123456789_abc123def",
+  "email": "maria.garcia@example.com",
+  "name": "María García",
+  "telegram": "@mariagarcia",
+  
+  "newsPreferences": {
+    "topics": ["technology", "business", "health", "cybersecurity"],
+    "countries": ["es", "us", "fr"],
+    "sources": [
+      "el-pais",
+      "bbc-news", 
+      "cnn",
+      "reuters",
+      "bloomberg",
+      "techcrunch",
+      "france24"
+    ],
+    "language": "es",
+    "frequency": "daily"
+  },
+  
+  "location": {
+    "primaryCountry": "es",
+    "timezone": "Europe/Madrid",
+    "selectedCountries": [
+      "🇪🇸 Spain|Europe/Madrid",
+      "🇺🇸 United States|America/New_York", 
+      "🇫🇷 France|Europe/Paris"
+    ]
+  },
+  
+  "metadata": {
+    "timestamp": "2024-01-15T10:30:45.123Z",
+    "source": "simply-news-survey",
+    "version": "2.0",
+    "invalidSources": [
+      "local-spanish-paper",
+      "regional-tech-blog"
+    ],
+    "totalSourcesSelected": 9,
+    "browserLanguage": "es-ES",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/..."
+  },
+  
+  "comments": "Me interesan especialmente las noticias de ciberseguridad y tecnología empresarial. Prefiero recibir las noticias por la mañana.",
+  
+  "workflowConfig": {
+    "enablePersonalization": true,
+    "createSchedule": true,
+    "setupTelegramBot": true,
+    "clientType": "survey_subscriber"
+  }
+}
+
+// EJEMPLO DE LLAMADAS GENERADAS A NEWSAPI:
+
+// 1. Llamada por fuentes específicas (España):
+GET https://newsapi.org/v2/top-headlines?sources=el-pais,bbc-news,cnn,reuters,bloomberg&language=es&pageSize=10
+
+// 2. Llamada por país y categoría (España + Tecnología):
+GET https://newsapi.org/v2/top-headlines?country=es&category=technology&language=es&pageSize=5
+
+// 3. Llamada por país y categoría (España + Negocios):
+GET https://newsapi.org/v2/top-headlines?country=es&category=business&language=es&pageSize=5
+
+// 4. Llamada por país y categoría (España + Salud):
+GET https://newsapi.org/v2/top-headlines?country=es&category=health&language=es&pageSize=5
+
+// 5. Búsqueda personalizada (Ciberseguridad):
+GET https://newsapi.org/v2/everything?q=cybersecurity+ciberseguridad&language=es&sortBy=publishedAt&pageSize=5&from=2024-01-14T10:30:45.123Z
+
+// 6. Búsqueda personalizada (Tecnología):
+GET https://newsapi.org/v2/everything?q=technology+tecnología&language=es&sortBy=publishedAt&pageSize=5&from=2024-01-14T10:30:45.123Z
+
+// EJEMPLO DE NEWSLETTER GENERADO:
+
+{
+  "clientId": "sn_1703123456789_abc123def",
+  "email": "maria.garcia@example.com",
+  "newsletter": "<!DOCTYPE html><html>...</html>",
+  "articleCount": 15,
+  "deliverySchedule": {
+    "frequency": "daily",
+    "timezone": "Europe/Madrid",
+    "preferredTime": "08:00",
+    "nextDelivery": "2024-01-16T08:00:00.000Z"
+  },
+  "personalizedContent": {
+    "topSources": ["El País", "BBC News", "Reuters"],
+    "topCategories": ["Technology", "Business"],
+    "relevanceScore": 8.5,
+    "readingTime": "12 minutes"
+  }
+} 
