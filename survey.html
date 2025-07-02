@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personaliza tu Experiencia - Simply News</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .back-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Survey Section */
+        .survey {
+            padding: 120px 0 80px;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .survey-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .survey-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .survey-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .survey-form {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .checkbox-item:hover {
+            background-color: #e9ecef;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 3rem;
+            background: #d4edda;
+            border-radius: 15px;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .success-message h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #155724;
+        }
+
+        .success-message p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .survey-title {
+                font-size: 2rem;
+            }
+            
+            .survey-subtitle {
+                font-size: 1rem;
+            }
+            
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .survey-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">Simply News</div>
+            <a href="index.html" class="back-link">← Volver al inicio</a>
+        </nav>
+    </header>
+
+    <!-- Survey Section -->
+    <section class="survey">
+        <div class="container">
+            <div class="survey-header">
+                <h1 class="survey-title">Personaliza tu Experiencia</h1>
+                <p class="survey-subtitle">Ayúdanos a enviarte las noticias que más te interesan. Con esta información podremos crear un flujo personalizado de noticias adaptado a tus preferencias.</p>
+            </div>
+            
+            <form id="preferencesForm" class="survey-form">
+                <div class="form-group">
+                    <label for="name">Nombre completo: *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email: *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telegram">Usuario de Telegram (opcional):</label>
+                    <input type="text" id="telegram" name="telegram" placeholder="@tu_usuario">
+                </div>
+                
+                <div class="form-group">
+                    <label>¿Qué temas te interesan más? (marca todas las que apliquen): *</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="interests" value="cybersecurity">
+                            Ciberseguridad
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="interests" value="sports">
+                            Deportes
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="interests" value="geopolitics">
+                            Geopolítica
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="interests" value="ai">
+                            Inteligencia Artificial
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="interests" value="general">
+                            Noticias Generales
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="interests" value="technology">
+                            Tecnología
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="frequency">¿Con qué frecuencia prefieres recibir noticias? *</label>
+                    <select id="frequency" name="frequency" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="daily">Diariamente</option>
+                        <option value="weekly">Semanalmente</option>
+                        <option value="important">Solo noticias importantes</option>
+                        <option value="custom">Personalizado</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="timezone">Zona horaria: *</label>
+                    <select id="timezone" name="timezone" required>
+                        <option value="">Selecciona tu zona horaria</option>
+                        <option value="UTC-8">Pacífico (UTC-8)</option>
+                        <option value="UTC-7">Mountain (UTC-7)</option>
+                        <option value="UTC-6">Central (UTC-6)</option>
+                        <option value="UTC-5">Eastern (UTC-5)</option>
+                        <option value="UTC-3">Brasil (UTC-3)</option>
+                        <option value="UTC+0">Londres (UTC+0)</option>
+                        <option value="UTC+1">Madrid (UTC+1)</option>
+                        <option value="UTC+2">Europa Central (UTC+2)</option>
+                        <option value="UTC+3">Moscú (UTC+3)</option>
+                        <option value="UTC+5:30">India (UTC+5:30)</option>
+                        <option value="UTC+8">China (UTC+8)</option>
+                        <option value="UTC+9">Japón (UTC+9)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="comments">Comentarios adicionales (opcional):</label>
+                    <textarea id="comments" name="comments" rows="4" placeholder="Cuéntanos más sobre tus preferencias de noticias, fuentes específicas que te gustan, o cualquier otra información relevante..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">Enviar Preferencias</button>
+            </form>
+            
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Enviando tus preferencias...</p>
+            </div>
+            
+            <div id="successMessage" class="success-message" style="display: none;">
+                <h3>¡Gracias por tus preferencias!</h3>
+                <p>Hemos recibido tu información y pronto comenzarás a recibir noticias personalizadas según tus intereses. Nuestro sistema de n8n procesará tus preferencias y activará un flujo personalizado para ti.</p>
+                <a href="https://t.me/Simply_news_chat" class="cta-button">Únete al Grupo de Telegram</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('preferencesForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const loading = document.getElementById('loading');
+            const form = document.getElementById('preferencesForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Validar que al menos un interés esté seleccionado
+            const interests = document.querySelectorAll('input[name="interests"]:checked');
+            if (interests.length === 0) {
+                alert('Por favor selecciona al menos un tema de interés.');
+                return;
+            }
+            
+            // Mostrar loading
+            submitBtn.disabled = true;
+            form.style.display = 'none';
+            loading.style.display = 'block';
+            
+            // Recopilar datos del formulario
+            const formData = new FormData(form);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                telegram: formData.get('telegram') || '',
+                interests: Array.from(interests).map(cb => cb.value),
+                frequency: formData.get('frequency'),
+                timezone: formData.get('timezone'),
+                comments: formData.get('comments') || '',
+                timestamp: new Date().toISOString(),
+                source: 'simply-news-survey'
+            };
+            
+            try {
+                // Aquí deberás reemplazar con tu URL del webhook de n8n
+                const webhookUrl = 'TU_URL_DEL_WEBHOOK_N8N_AQUI';
+                
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    // Mostrar mensaje de éxito
+                    loading.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    
+                    // Opcional: enviar a Google Analytics o similar
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'survey_submitted', {
+                            'event_category': 'engagement',
+                            'event_label': 'preferences_survey'
+                        });
+                    }
+                } else {
+                    throw new Error('Error en el servidor');
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Hubo un error al enviar tus preferencias. Por favor, inténtalo de nuevo.');
+                
+                // Restaurar formulario
+                loading.style.display = 'none';
+                form.style.display = 'block';
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,4 +1,4 @@
-# Simple News - AI-Powered News & Chatbot
+# Simply News - AI-Powered News & Chatbot
 
 Una aplicación web moderna que combina noticias con un chatbot inteligente para una experiencia de lectura interactiva.
 
@@ -26,7 +26,7 @@ Una aplicación web moderna que combina noticias con un chatbot inteligente para
 
 ## 🌐 Demo Online
 
-Visita la versión online en: [GitHub Pages](https://tu-usuario.github.io/simple-news)
+Visita la versión online en: [GitHub Pages](https://tu-usuario.github.io/simply-news)
 
 ## 📄 Licencia
 
