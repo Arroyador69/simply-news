@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personaliza tu Experiencia - Simply News</title>
+    <title>Personalize Your Experience - Simply News</title>
     <style>
         * {
             margin: 0;
@@ -20,7 +20,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -80,7 +80,7 @@
         .survey-subtitle {
             font-size: 1.2rem;
             color: #666;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
         }
 
@@ -145,6 +145,48 @@
             width: auto;
             margin-right: 10px;
             transform: scale(1.2);
+        }
+
+        /* Search functionality */
+        .search-container {
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .search-container.active {
+            display: block;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .search-results {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #e1e5e9;
+            border-radius: 8px;
+            background: white;
+        }
+
+        .search-result-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-result-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
         }
 
         .submit-btn {
@@ -255,7 +297,7 @@
     <header>
         <nav class="container">
             <div class="logo">Simply News</div>
-            <a href="index.html" class="back-link">← Volver al inicio</a>
+            <a href="index.html" class="back-link">← Back to Home</a>
         </nav>
     </header>
 
@@ -263,13 +305,13 @@
     <section class="survey">
         <div class="container">
             <div class="survey-header">
-                <h1 class="survey-title">Personaliza tu Experiencia</h1>
-                <p class="survey-subtitle">Ayúdanos a enviarte las noticias que más te interesan. Con esta información podremos crear un flujo personalizado de noticias adaptado a tus preferencias.</p>
+                <h1 class="survey-title">Personalize Your Experience</h1>
+                <p class="survey-subtitle">Help us send you the news that interests you most. With this information, we can create a personalized news flow tailored to your preferences.</p>
             </div>
             
             <form id="preferencesForm" class="survey-form">
                 <div class="form-group">
-                    <label for="name">Nombre completo: *</label>
+                    <label for="name">Full Name: *</label>
                     <input type="text" id="name" name="name" required>
                 </div>
                 
@@ -279,92 +321,348 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="telegram">Usuario de Telegram (opcional):</label>
-                    <input type="text" id="telegram" name="telegram" placeholder="@tu_usuario">
+                    <label for="telegram">Telegram Username (optional):</label>
+                    <input type="text" id="telegram" name="telegram" placeholder="@your_username">
                 </div>
                 
                 <div class="form-group">
-                    <label>¿Qué temas te interesan más? (marca todas las que apliquen): *</label>
+                    <label>What topics interest you most? (select all that apply): *</label>
                     <div class="checkbox-group">
                         <label class="checkbox-item">
-                            <input type="checkbox" name="interests" value="cybersecurity">
-                            Ciberseguridad
+                            <input type="checkbox" name="interests" value="business">
+                            Business
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox" name="interests" value="sports">
-                            Deportes
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="interests" value="geopolitics">
-                            Geopolítica
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="interests" value="ai">
-                            Inteligencia Artificial
+                            <input type="checkbox" name="interests" value="entertainment">
+                            Entertainment
                         </label>
                         <label class="checkbox-item">
                             <input type="checkbox" name="interests" value="general">
-                            Noticias Generales
+                            General News
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="interests" value="health">
+                            Health
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="interests" value="science">
+                            Science
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="interests" value="sports">
+                            Sports
                         </label>
                         <label class="checkbox-item">
                             <input type="checkbox" name="interests" value="technology">
-                            Tecnología
+                            Technology
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="interests" value="cybersecurity">
+                            Cybersecurity
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="interests" value="geopolitics">
+                            Geopolitics
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="interests" value="ai">
+                            Artificial Intelligence
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="interests" value="other" id="otherCheckbox">
+                            Other
+                        </label>
+                    </div>
+                    
+                    <!-- Search container for "Other" option -->
+                    <div id="searchContainer" class="search-container">
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search for specific topics...">
+                        <div id="searchResults" class="search-results" style="display: none;"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="countries">Countries of interest (select all that apply):</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="countries" value="usa">
+                            United States
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="countries" value="uk">
+                            United Kingdom
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="countries" value="spain">
+                            Spain
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="countries" value="france">
+                            France
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="countries" value="germany">
+                            Germany
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="countries" value="italy">
+                            Italy
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="countries" value="brazil">
+                            Brazil
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="countries" value="mexico">
+                            Mexico
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="countries" value="canada">
+                            Canada
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="countries" value="australia">
+                            Australia
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="countries" value="japan">
+                            Japan
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="countries" value="china">
+                            China
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="countries" value="india">
+                            India
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="countries" value="russia">
+                            Russia
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="countries" value="global">
+                            Global/International
                         </label>
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="frequency">¿Con qué frecuencia prefieres recibir noticias? *</label>
+                    <label for="sources">Preferred news sources (select all that apply):</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="sources" value="reuters">
+                            Reuters
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="sources" value="ap">
+                            Associated Press
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="sources" value="bbc">
+                            BBC
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="sources" value="cnn">
+                            CNN
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="sources" value="nytimes">
+                            The New York Times
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="sources" value="wsj">
+                            The Wall Street Journal
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="sources" value="guardian">
+                            The Guardian
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="sources" value="techcrunch">
+                            TechCrunch
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="sources" value="wired">
+                            Wired
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="sources" value="ars">
+                            Ars Technica
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="sources" value="espn">
+                            ESPN
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="sources" value="nature">
+                            Nature
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="sources" value="science">
+                            Science Magazine
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="sources" value="local">
+                            Local News Sources
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="sources" value="any">
+                            Any Reliable Source
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="frequency">How often would you like to receive news? *</label>
                     <select id="frequency" name="frequency" required>
-                        <option value="">Selecciona una opción</option>
-                        <option value="daily">Diariamente</option>
-                        <option value="weekly">Semanalmente</option>
-                        <option value="important">Solo noticias importantes</option>
-                        <option value="custom">Personalizado</option>
+                        <option value="">Select an option</option>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="important">Only important news</option>
+                        <option value="custom">Custom</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
-                    <label for="timezone">Zona horaria: *</label>
+                    <label for="timezone">Time zone: *</label>
                     <select id="timezone" name="timezone" required>
-                        <option value="">Selecciona tu zona horaria</option>
-                        <option value="UTC-8">Pacífico (UTC-8)</option>
+                        <option value="">Select your time zone</option>
+                        <option value="UTC-8">Pacific (UTC-8)</option>
                         <option value="UTC-7">Mountain (UTC-7)</option>
                         <option value="UTC-6">Central (UTC-6)</option>
                         <option value="UTC-5">Eastern (UTC-5)</option>
-                        <option value="UTC-3">Brasil (UTC-3)</option>
-                        <option value="UTC+0">Londres (UTC+0)</option>
+                        <option value="UTC-3">Brazil (UTC-3)</option>
+                        <option value="UTC+0">London (UTC+0)</option>
                         <option value="UTC+1">Madrid (UTC+1)</option>
-                        <option value="UTC+2">Europa Central (UTC+2)</option>
-                        <option value="UTC+3">Moscú (UTC+3)</option>
+                        <option value="UTC+2">Central Europe (UTC+2)</option>
+                        <option value="UTC+3">Moscow (UTC+3)</option>
                         <option value="UTC+5:30">India (UTC+5:30)</option>
                         <option value="UTC+8">China (UTC+8)</option>
-                        <option value="UTC+9">Japón (UTC+9)</option>
+                        <option value="UTC+9">Japan (UTC+9)</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
-                    <label for="comments">Comentarios adicionales (opcional):</label>
-                    <textarea id="comments" name="comments" rows="4" placeholder="Cuéntanos más sobre tus preferencias de noticias, fuentes específicas que te gustan, o cualquier otra información relevante..."></textarea>
+                    <label for="comments">Additional comments (optional):</label>
+                    <textarea id="comments" name="comments" rows="4" placeholder="Tell us more about your news preferences, specific sources you like, or any other relevant information..."></textarea>
                 </div>
                 
-                <button type="submit" class="submit-btn" id="submitBtn">Enviar Preferencias</button>
+                <button type="submit" class="submit-btn" id="submitBtn">Send Preferences</button>
             </form>
             
             <div id="loading" class="loading">
                 <div class="spinner"></div>
-                <p>Enviando tus preferencias...</p>
+                <p>Sending your preferences...</p>
             </div>
             
             <div id="successMessage" class="success-message" style="display: none;">
-                <h3>¡Gracias por tus preferencias!</h3>
-                <p>Hemos recibido tu información y pronto comenzarás a recibir noticias personalizadas según tus intereses. Nuestro sistema de n8n procesará tus preferencias y activará un flujo personalizado para ti.</p>
-                <a href="https://t.me/Simply_news_chat" class="cta-button">Únete al Grupo de Telegram</a>
+                <h3>Thank you for your preferences!</h3>
+                <p>We have received your information and you will soon start receiving personalized news according to your interests. Our n8n system will process your preferences and activate a personalized flow for you.</p>
+                <a href="https://t.me/Simply_news_chat" class="cta-button">Join Telegram Group</a>
             </div>
         </div>
     </section>
 
     <script>
+        // Handle "Other" checkbox functionality
+        document.getElementById('otherCheckbox').addEventListener('change', function() {
+            const searchContainer = document.getElementById('searchContainer');
+            if (this.checked) {
+                searchContainer.classList.add('active');
+            } else {
+                searchContainer.classList.remove('active');
+                document.getElementById('searchInput').value = '';
+                document.getElementById('searchResults').style.display = 'none';
+            }
+        });
+
+        // Search functionality with n8n integration
+        let searchTimeout;
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const query = this.value.trim();
+            const searchResults = document.getElementById('searchResults');
+            
+            clearTimeout(searchTimeout);
+            
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+            
+            searchTimeout = setTimeout(async () => {
+                try {
+                    // Replace with your n8n search webhook URL
+                    const searchWebhookUrl = 'TU_URL_DEL_WEBHOOK_BUSQUEDA_N8N_AQUI';
+                    
+                    const response = await fetch(searchWebhookUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            query: query,
+                            type: 'topic_search'
+                        })
+                    });
+                    
+                    if (response.ok) {
+                        const results = await response.json();
+                        displaySearchResults(results);
+                    } else {
+                        // Fallback to local search if n8n is not available
+                        const fallbackResults = getFallbackSearchResults(query);
+                        displaySearchResults(fallbackResults);
+                    }
+                } catch (error) {
+                    console.error('Search error:', error);
+                    // Fallback to local search
+                    const fallbackResults = getFallbackSearchResults(query);
+                    displaySearchResults(fallbackResults);
+                }
+            }, 300);
+        });
+
+        function displaySearchResults(results) {
+            const searchResults = document.getElementById('searchResults');
+            searchResults.innerHTML = '';
+            
+            if (results.length === 0) {
+                searchResults.innerHTML = '<div class="search-result-item">No results found</div>';
+            } else {
+                results.forEach(result => {
+                    const item = document.createElement('div');
+                    item.className = 'search-result-item';
+                    item.textContent = result.name || result;
+                    item.addEventListener('click', () => {
+                        document.getElementById('searchInput').value = result.name || result;
+                        searchResults.style.display = 'none';
+                    });
+                    searchResults.appendChild(item);
+                });
+            }
+            
+            searchResults.style.display = 'block';
+        }
+
+        function getFallbackSearchResults(query) {
+            const fallbackTopics = [
+                'Cryptocurrency', 'Blockchain', 'Climate Change', 'Renewable Energy',
+                'Space Exploration', 'Mars Mission', 'Electric Vehicles', 'Quantum Computing',
+                'Machine Learning', 'Data Science', 'Cybersecurity', 'Digital Privacy',
+                'Social Media', 'Gaming', 'E-sports', 'Virtual Reality', 'Augmented Reality',
+                '5G Technology', 'Internet of Things', 'Smart Cities', 'Fintech',
+                'Biotechnology', 'Gene Editing', 'Vaccines', 'Mental Health',
+                'Sustainable Living', 'Zero Waste', 'Plant-based Diet', 'Fitness',
+                'Travel', 'Tourism', 'Aviation', 'Maritime', 'Logistics', 'Supply Chain'
+            ];
+            
+            return fallbackTopics.filter(topic => 
+                topic.toLowerCase().includes(query.toLowerCase())
+            ).slice(0, 10);
+        }
+
+        // Form submission
         document.getElementById('preferencesForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -373,25 +671,30 @@
             const form = document.getElementById('preferencesForm');
             const successMessage = document.getElementById('successMessage');
             
-            // Validar que al menos un interés esté seleccionado
+            // Validate that at least one interest is selected
             const interests = document.querySelectorAll('input[name="interests"]:checked');
             if (interests.length === 0) {
-                alert('Por favor selecciona al menos un tema de interés.');
+                alert('Please select at least one topic of interest.');
                 return;
             }
             
-            // Mostrar loading
+            // Show loading
             submitBtn.disabled = true;
             form.style.display = 'none';
             loading.style.display = 'block';
             
-            // Recopilar datos del formulario
+            // Collect form data
             const formData = new FormData(form);
+            const countries = Array.from(document.querySelectorAll('input[name="countries"]:checked')).map(cb => cb.value);
+            const sources = Array.from(document.querySelectorAll('input[name="sources"]:checked')).map(cb => cb.value);
+            
             const data = {
                 name: formData.get('name'),
                 email: formData.get('email'),
                 telegram: formData.get('telegram') || '',
                 interests: Array.from(interests).map(cb => cb.value),
+                countries: countries,
+                sources: sources,
                 frequency: formData.get('frequency'),
                 timezone: formData.get('timezone'),
                 comments: formData.get('comments') || '',
@@ -400,7 +703,7 @@
             };
             
             try {
-                // Aquí deberás reemplazar con tu URL del webhook de n8n
+                // Replace with your n8n webhook URL
                 const webhookUrl = 'TU_URL_DEL_WEBHOOK_N8N_AQUI';
                 
                 const response = await fetch(webhookUrl, {
@@ -412,11 +715,11 @@
                 });
                 
                 if (response.ok) {
-                    // Mostrar mensaje de éxito
+                    // Show success message
                     loading.style.display = 'none';
                     successMessage.style.display = 'block';
                     
-                    // Opcional: enviar a Google Analytics o similar
+                    // Optional: send to Google Analytics
                     if (typeof gtag !== 'undefined') {
                         gtag('event', 'survey_submitted', {
                             'event_category': 'engagement',
@@ -424,14 +727,14 @@
                         });
                     }
                 } else {
-                    throw new Error('Error en el servidor');
+                    throw new Error('Server error');
                 }
                 
             } catch (error) {
                 console.error('Error:', error);
-                alert('Hubo un error al enviar tus preferencias. Por favor, inténtalo de nuevo.');
+                alert('There was an error sending your preferences. Please try again.');
                 
-                // Restaurar formulario
+                // Restore form
                 loading.style.display = 'none';
                 form.style.display = 'block';
                 submitBtn.disabled = false;
